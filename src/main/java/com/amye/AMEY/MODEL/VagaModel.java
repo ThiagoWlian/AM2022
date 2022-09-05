@@ -15,9 +15,20 @@ public class VagaModel {
 	private String nome;
 	private String descricao;
 	private String salario;
+	private String tempo_experiencia;
 	
 	@ManyToMany(mappedBy = "vagas")
 	private List<HabilidadeModel> habilidades;
+	
+	public VagaModel(String nome, String descricao, String salario, String tempo_experiencia) {
+		super();
+		this.nome = nome;
+		this.descricao = descricao;
+		this.salario = salario;
+		this.tempo_experiencia = tempo_experiencia;
+	}
+	
+	public VagaModel() {}
 	
 	public int getId() {
 		return id;
@@ -49,5 +60,10 @@ public class VagaModel {
 	public void setHabilidades(List<HabilidadeModel> habilidades) {
 		this.habilidades = habilidades;
 	}
-	
+	public String getTempo_experiencia() {
+		return tempo_experiencia;
+	}
+	public void setTempo_experiencia(String tempo_experiencia) {
+		this.tempo_experiencia = tempo_experiencia;
+	}
 }

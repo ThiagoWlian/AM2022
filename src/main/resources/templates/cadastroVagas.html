@@ -1,34 +1,52 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>EY</title>
-    <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.min.css}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
-    <link rel="stylesheet" th:href="@{/assets/css/Articles-Badges-images.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/Black-Navbar.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/Dark-NavBar-Navigation-with-Button.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/Dark-NavBar-Navigation-with-Search.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/Dark-NavBar.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/Drag-and-Drop-File-Input.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/Drag-and-Drop-Multiple-File-Form-Input-upload-Advanced.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/LinkedIn-like-Profile-Box.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/Login-Form-Basic-icons.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/Ludens-Users---25-After-Register.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/Model-Gallery-And-Profile-light-slider-gallery-section.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/Profile-Card.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/Profile-Edit-Form-styles.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/Profile-Edit-Form.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/Register-form.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/Single-Advisor-Profile.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/styles.css}">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<title>EY</title>
+<link rel="stylesheet"
+	th:href="@{/assets/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=ABeeZee">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Muli">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+<link rel="stylesheet"
+	th:href="@{/assets/css/Articles-Badges-images.css}">
+<link rel="stylesheet" th:href="@{/assets/css/Black-Navbar.css}">
+<link rel="stylesheet"
+	th:href="@{/assets/css/Dark-NavBar-Navigation-with-Button.css}">
+<link rel="stylesheet"
+	th:href="@{/assets/css/Dark-NavBar-Navigation-with-Search.css}">
+<link rel="stylesheet" th:href="@{/assets/css/Dark-NavBar.css}">
+<link rel="stylesheet"
+	th:href="@{/assets/css/Drag-and-Drop-File-Input.css}">
+<link rel="stylesheet"
+	th:href="@{/assets/css/Drag-and-Drop-Multiple-File-Form-Input-upload-Advanced.css}">
+<link rel="stylesheet"
+	th:href="@{/assets/css/LinkedIn-like-Profile-Box.css}">
+<link rel="stylesheet"
+	th:href="@{/assets/css/Login-Form-Basic-icons.css}">
+<link rel="stylesheet"
+	th:href="@{/assets/css/Ludens-Users---25-After-Register.css}">
+<link rel="stylesheet"
+	th:href="@{/assets/css/Model-Gallery-And-Profile-light-slider-gallery-section.css}">
+<link rel="stylesheet" th:href="@{/assets/css/Profile-Card.css}">
+<link rel="stylesheet"
+	th:href="@{/assets/css/Profile-Edit-Form-styles.css}">
+<link rel="stylesheet" th:href="@{/assets/css/Profile-Edit-Form.css}">
+<link rel="stylesheet" th:href="@{/assets/css/Register-form.css}">
+<link rel="stylesheet"
+	th:href="@{/assets/css/Single-Advisor-Profile.css}">
+<link rel="stylesheet" th:href="@{/assets/css/styles.css}">
 </head>
 
 <body>
@@ -60,36 +78,67 @@
 				</ul>
 				<p class="ms-auto navbar-text actions"></p>
 			</div>
-			<img class="rounded-circle"
-				style="height: 50px; height: 40px; margin-right: 13px; margin-top: 3px;"
-				src="assets/img/user-photo2.jpg">
-			<p class="fw-bold mb-0"
-				style="color: rgb(254, 249, 249); margin-top: 4px;">Thiago Wlian</p>
 		</div>
 	</nav>
-	<div class="container py-4 py-xl-5">
-		<div class="container py-4 py-xl-5">
-			<h2 style="margin-bottom: 28px;">Trilhas</h2>
-			<div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3"
-				style="margin-top: 0px;">
-				<div class="col" th:each="trilha : ${listarTrilhas}">
-					<div class="card">
-						<img class="card-img-top w-100 d-block fit-cover"
-							style="height: 200px;" th:src="${trilha.imagem}">
-						<div class="card-body p-4"
-							style="min-width: auto; height: 197.967px; max-height: 234.797px; min-height: 234.797px;">
-							<h4 class="card-title" th:text="${trilha.nome}">TESTE</h4>
-							<p class="card-text">
-								<span style="color: rgb(77, 81, 86);"
-									th:text="${trilha.descricao}"></span><br>
-							</p>
-							<div class="d-flex">
-								<div></div>
-							</div>
-							<button class="btn btn-primary" type="button"
-								style="position: relative; margin-left: 255px; margin-top: -2px;">ACESSAR</button>
-						</div>
+	<div class="container"
+		style="position: static; left: 0; right: 0; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%);">
+		<div
+			class="row d-flex d-xl-flex justify-content-center justify-content-xl-center"
+			style="margin-top: 297px;">
+			<div
+				class="col-sm-12 col-lg-10 col-xl-9 col-xxl-7 bg-white shadow-lg"
+				style="border-radius: 5px; max-height: none; height: 546.797px; max-width: auto; min-width: auto; width: auto; margin-bottom: -107px;">
+				<div class="p-5" style="height: 460.797px;">
+					<div class="text-center">
+						<h4 class="text-dark mb-4" style="text-align: left;">Cadastro
+							de Vaga</h4>
 					</div>
+					<form action="/vaga/cadastro" method="post" class="user">
+						<div class="mb-3">
+							<input name="nome" class="form-control form-control-user"
+								type="text" placeholder="Nome da Vaga" required=""
+								style="margin-top: 53px;">
+						</div>
+						<textarea name="descricao" class="form-control"
+							placeholder="Descrição" style="height: 110px;"></textarea>
+						<div class="mb-3"></div>
+						<div class="row mb-3">
+							<div class="col-sm-6 mb-3 mb-sm-0">
+								<input name="salario" class="form-control form-control-user"
+									type="text" placeholder="Salário" required="">
+							</div>
+							<div class="col-sm-6">
+								<input name="experiencia" class="form-control form-control-user"
+									type="text" placeholder="Tempo de Experiência" required="">
+							</div>
+						</div>
+						<div class="row mb-3" th:object="${habilidades}">
+							<div class="col-sm-6 col-xl-11 col-xxl-11 mb-3 mb-sm-0"
+								style="width: auto; display: flex;">
+								<input name="habilidade" class="form-control form-control-user"
+									type="text" placeholder="Habilidade" required=""
+									style="width: 668.016px;">
+								<button class="btn btn-primary" type="button"
+									style="margin-left: 17px; height: 35px;" th:onclick="habilidades.add(habilidade)">Add</button>
+							</div>
+						</div>
+						<span class="badge rounded-pill bg-primary mb-2"
+							style="padding-right: 9.8px; padding-left: 9.8px; margin-left: 5px;">Java</span><span
+							class="badge rounded-pill bg-primary mb-2"
+							style="padding-right: 9.8px; padding-left: 9.8px; margin-left: 5px;">Java</span><span
+							class="badge rounded-pill bg-primary mb-2"
+							style="padding-right: 9.8px; padding-left: 9.8px; margin-left: 5px;">Java</span>
+						<div class="row mb-3">
+							<p id="emailErrorMsg" class="text-danger" style="display: none;">Paragraph</p>
+							<p id="passwordErrorMsg" class="text-danger"
+								style="display: none;">Paragraph</p>
+						</div>
+						<button class="btn btn-primary d-block btn-user w-100"
+							id="submitBtn" type="submit">Registar Vaga</button>
+						<hr>
+					</form>
+					<div class="text-center"></div>
+					<div class="text-center"></div>
 				</div>
 			</div>
 		</div>
@@ -99,11 +148,10 @@
 		<div class="container text-white py-4 py-lg-5">
 			<ul class="list-inline">
 				<li class="list-inline-item me-4"><a class="link-light"
-					href="#">Home</a></li>
+					href="#">Web design</a></li>
 				<li class="list-inline-item me-4"><a class="link-light"
-					href="#">Trilhas</a></li>
-				<li class="list-inline-item"><a class="link-light" href="#">Processos
-						Seletivos</a></li>
+					href="#">Development</a></li>
+				<li class="list-inline-item"><a class="link-light" href="#">Hosting</a></li>
 			</ul>
 			<ul class="list-inline">
 				<li class="list-inline-item me-4"><svg
@@ -139,5 +187,4 @@
 	<script src="assets/js/Model-Gallery-And-Profile.js"></script>
 	<script src="assets/js/Profile-Edit-Form.js"></script>
 </body>
-
 </html>
