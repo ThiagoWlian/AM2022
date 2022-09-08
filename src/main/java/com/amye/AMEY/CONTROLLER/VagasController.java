@@ -47,7 +47,10 @@ public class VagasController {
 	
 	@PostMapping("/cadastro")
 	public String cadastrarVaga(CadastroVagaDto cadastroVagaDto, @ModelAttribute("habilidades") List<HabilidadeModel> habilidades) {
-		vagasService.cadastrarVaga(cadastroVagaDto.transformaEmVagaModel());
+		List<HabilidadeModel> listaHabilidadesPersistidas = habilidadesService.cadastarListaDeHabilidades(cadastroVagaDto.listarHabilidades());
+		VagaModel vagaParaPersistencia = cadastroVagaDto.transformaEmVagaModel();
+		vagaParaPersistencia.setHabilidades(listaHabilidadesPersistidas);
+		vagasService.cadastrarVaga(vagaParaPersistencia);
 		return "redirect:/vaga";
 	}
 }

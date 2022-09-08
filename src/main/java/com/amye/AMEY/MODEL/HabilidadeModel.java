@@ -1,8 +1,11 @@
 package com.amye.AMEY.MODEL;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -13,15 +16,19 @@ import javax.persistence.Table;
 @Table(name = "HABILIDADES")
 public class HabilidadeModel {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nome;
 	
-	@ManyToMany
-	@JoinTable(name = "VAGAS_HABILIDADES",
-	joinColumns = @JoinColumn(name = "HABILIDADES_ID"),
-	inverseJoinColumns = @JoinColumn(name = "VAGAS_ID")
-	)
+	@ManyToMany(mappedBy = "habilidades")
 	private List<VagaModel> vagas;
+	
+	public HabilidadeModel() {}
+	
+	public HabilidadeModel(String nome) {
+		super();
+		this.nome = nome;
+	}
 	
 	public int getId() {
 		return id;
@@ -34,5 +41,17 @@ public class HabilidadeModel {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public List<VagaModel> getVagas() {
+		return vagas;
+	}
+
+	public void setVagas(List<VagaModel> vagas) {
+		this.vagas = vagas;
+	}
+	
+	public void addVaga(VagaModel vaga) {
+		vagas.add(vaga);
 	}
 }

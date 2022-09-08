@@ -2,3 +2,9 @@
   object-fit: cover;
 }
 
+body {
+  position: relative;
+  height: Auto;
+  display: block;
+}
+

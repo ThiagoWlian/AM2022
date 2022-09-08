@@ -3,7 +3,11 @@ package com.amye.AMEY.MODEL;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -11,13 +15,18 @@ import javax.persistence.Table;
 @Table(name = "VAGAS")
 public class VagaModel {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nome;
 	private String descricao;
 	private String salario;
 	private String tempo_experiencia;
 	
-	@ManyToMany(mappedBy = "vagas")
+	@ManyToMany
+	@JoinTable(name = "VAGAS_HABILIDADES",
+	joinColumns = @JoinColumn(name = "VAGAS_ID"),
+	inverseJoinColumns = @JoinColumn(name = "HABILIDADES_ID")
+	)
 	private List<HabilidadeModel> habilidades;
 	
 	public VagaModel(String nome, String descricao, String salario, String tempo_experiencia) {

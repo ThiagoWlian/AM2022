@@ -1,8 +1,13 @@
 package com.amye.AMEY.DTO;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.amye.AMEY.MODEL.HabilidadeModel;
 import com.amye.AMEY.MODEL.VagaModel;
 
-import net.bytebuddy.asm.Advice.This;
 
 public class CadastroVagaDto {
 	private String nome;
@@ -10,6 +15,10 @@ public class CadastroVagaDto {
 	private String salario;
 	private String experiencia;
 	private String listaDeHabilidades;
+	
+	private List<String> getListaHabilidades(){
+		return new ArrayList<String>(Arrays.asList(listaDeHabilidades.split(";")));
+	}
 	
 	public String getNome() {
 		return nome;
@@ -49,11 +58,14 @@ public class CadastroVagaDto {
 
 	public void setListaDeHabilidades(String listaDeHabilidades) {
 		this.listaDeHabilidades = listaDeHabilidades;
-		System.out.println(this.listaDeHabilidades);
 	}
 
 	public VagaModel transformaEmVagaModel() {
 		return new VagaModel(nome, descricao, salario, experiencia);
+	}
+	
+	public List<HabilidadeModel> listarHabilidades() {
+		return getListaHabilidades().stream().map(e -> new HabilidadeModel(e)).collect(Collectors.toList());
 	}
 	
 }

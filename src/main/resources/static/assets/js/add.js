@@ -21,4 +21,5 @@ function addHabilidade() {
   insertAfter(newSpan, divNew);
   var textoHabilidades = document.querySelector('#listaHabilidades')
   document.querySelector('#listaHabilidades').value = textoHabilidades.value + input.value + ";";
+  document.querySelector('#habilidade').value = ""
 }
