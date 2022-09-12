@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -32,9 +33,16 @@ public class TrilhasController {
 		return "cadastroTrilhas";
 	}
 	
+	@GetMapping("/conteudo/{idConteudo}")
+	public String telaConteudoTrilha(Model model, @PathVariable int idConteudo) {
+		model.addAttribute("nomeTrilha", trilhaService.buscarTrilhaPorId(idConteudo).get().getNome());
+		model.addAttribute("conteudoLista", trilhaService.listarConteudoTrilhaPorIdProva(idConteudo));
+		return "trilhaConteudo";
+	}
+	
 	@PostMapping("/cadastrar")
 	public String CadastroTrilha(CadastroTrilhaDto cadastroTrilhaDto) {
-		trilhaService.cadastrarTrilha(cadastroTrilhaDto.converterParaTrilhaModel());
+		trilhaService.cadastrarTrilha(cadastroTrilhaDto.converterParaTrilhaModel(), cadastroTrilhaDto.converterParaListaDto());
 		return "redirect:/trilha";
 	}
 }

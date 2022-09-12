@@ -15,6 +15,8 @@ public class CadastroVagaDto {
 	private String salario;
 	private String experiencia;
 	private String listaDeHabilidades;
+	private String beneficios;
+	private String prerequisitos;
 	
 	private List<String> getListaHabilidades(){
 		return new ArrayList<String>(Arrays.asList(listaDeHabilidades.split(";")));
@@ -60,8 +62,24 @@ public class CadastroVagaDto {
 		this.listaDeHabilidades = listaDeHabilidades;
 	}
 
+	public String getBeneficios() {
+		return beneficios;
+	}
+
+	public void setBeneficios(String beneficios) {
+		this.beneficios = beneficios;
+	}
+
+	public String getPrerequisitos() {
+		return prerequisitos;
+	}
+
+	public void setPrerequisitos(String prerequisitos) {
+		this.prerequisitos = prerequisitos;
+	}
+
 	public VagaModel transformaEmVagaModel() {
-		return new VagaModel(nome, descricao, salario, experiencia);
+		return new VagaModel(nome, descricao, beneficios, prerequisitos, salario, experiencia);
 	}
 	
 	public List<HabilidadeModel> listarHabilidades() {

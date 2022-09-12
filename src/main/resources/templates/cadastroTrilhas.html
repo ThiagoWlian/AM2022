@@ -107,15 +107,17 @@
 									style="text-align: left; font-size: 19px; margin-top: 10px;">Conteúdo
 									da Trilha</h4>
 								<input class="form-control form-control-user" type="text"
-									placeholder="Nome da Conteúdo" required=""
+									placeholder="Nome da Conteúdo" id="conteudoTrilha"
 									style="margin-top: 19px; min-width: 90%;"><input
 									class="form-control form-control-user" type="text"
-									placeholder="URL do Vídeo" required=""
+									placeholder="URL do Vídeo" id="urlVideo"
 									style="margin-top: 19px; min-width: 90%;"><input
 									class="form-control form-control-user" type="text"
-									placeholder="URL do Documento" required=""
+									placeholder="URL do Documento" id="urlDocumento"
 									style="margin-top: 19px; min-width: 90%;">
-								<button class="btn btn-primary" type="button"
+									<input type="hidden" name="listaConteudo"
+							id="listaConteudo">
+								<button class="btn btn-primary add" type="button"
 									style="margin-left: 570px; height: 35px; margin-top: 7px; border-radius: 5px;">Add</button>
 							</div>
 						</div>
@@ -179,6 +181,7 @@
 		src="assets/js/Drag-and-Drop-Multiple-File-Form-Input-upload-Advanced.js"></script>
 	<script src="https://geodata.solutions/includes/countrystate.js"></script>
 	<script src="assets/js/Model-Gallery-And-Profile.js"></script>
+	<script th:src="@{/assets/js/addConteudoTrilha.js}"></script>
 	<script src="assets/js/Profile-Edit-Form.js"></script>
 </body>
 

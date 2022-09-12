@@ -1,36 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>EY</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
-    <link rel="stylesheet" href="assets/css/Articles-Badges-images.css">
-    <link rel="stylesheet" href="assets/css/Black-Navbar.css">
-    <link rel="stylesheet" href="assets/css/Dark-NavBar-Navigation-with-Button.css">
-    <link rel="stylesheet" href="assets/css/Dark-NavBar-Navigation-with-Search.css">
-    <link rel="stylesheet" href="assets/css/Dark-NavBar.css">
-    <link rel="stylesheet" href="assets/css/Drag-and-Drop-File-Input.css">
-    <link rel="stylesheet" href="assets/css/Drag-and-Drop-Multiple-File-Form-Input-upload-Advanced.css">
-    <link rel="stylesheet" href="assets/css/LinkedIn-like-Profile-Box.css">
-    <link rel="stylesheet" href="assets/css/Login-Form-Basic-icons.css">
-    <link rel="stylesheet" href="assets/css/Ludens-Users---25-After-Register.css">
-    <link rel="stylesheet" href="assets/css/Model-Gallery-And-Profile-light-slider-gallery-section.css">
-    <link rel="stylesheet" href="assets/css/Profile-Card.css">
-    <link rel="stylesheet" href="assets/css/Profile-Edit-Form-styles.css">
-    <link rel="stylesheet" href="assets/css/Profile-Edit-Form.css">
-    <link rel="stylesheet" href="assets/css/Register-form.css">
-    <link rel="stylesheet" href="assets/css/Single-Advisor-Profile.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Articles-Badges-images.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/Black-Navbar.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/Dark-NavBar-Navigation-with-Button.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/Dark-NavBar-Navigation-with-Search.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/Dark-NavBar.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/Drag-and-Drop-File-Input.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/Drag-and-Drop-Multiple-File-Form-Input-upload-Advanced.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/LinkedIn-like-Profile-Box.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/Login-Form-Basic-icons.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/Ludens-Users---25-After-Register.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/Model-Gallery-And-Profile-light-slider-gallery-section.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/Profile-Card.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/Profile-Edit-Form-styles.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/Profile-Edit-Form.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/Register-form.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/Single-Advisor-Profile.css}">
 </head>
 
-<body>
+<body style="margin-top: 0px;height: Auto;min-height: auto;">
     <nav class="navbar navbar-light navbar-expand-md navbar-fixed-top navigation-clean-button" style="background: rgb(34, 34, 34);border-radius: 20;border-top-left-radius: 20;border-top-right-radius: 20;border-bottom-right-radius: 20;border-bottom-left-radius: 20;border-style: none;padding-top: 0;padding-bottom: 10px;">
         <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div><a class="navbar-brand" href="#"><span style="color: rgb(255,255,255);font-size: 32px;margin-top: 0px;">EY</span> </a></div>
@@ -41,14 +42,17 @@
                     <li class="nav-item"><a class="nav-link" href="faq.html" style="color: rgba(224,217,217,0.9);">Trilhas</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html" style="color: rgba(224,217,217,0.9);">Processos Seletivos</a></li>
                 </ul>
-                <div class="card text-center"></div>
                 <p class="ms-auto navbar-text actions"> </p>
-            </div><img class="rounded-circle" style="height: 50px;height: 40px;margin-right: 13px;margin-top: 3px;" src="assets/img/user-photo2.jpg">
+            </div><img class="rounded-circle" style="height: 50px;height: 40px;margin-right: 13px;margin-top: 3px;" src="/assets/img/user-photo2.jpg">
             <p class="fw-bold mb-0" style="color: rgb(254,249,249);margin-top: 4px;">Thiago Wlian</p>
         </div>
     </nav>
-    <div class="container py-4 py-xl-5">
-        <h2 style="margin-bottom: 28px;">Trilhas</h2>
+    <div class="container py-4 py-xl-5" style="width: 70%;">
+        <h2 style="margin-bottom: 28px;" th:text="${nomeTrilha}">Spring Boot</h2>
+        <div class="row" style="border-width: 1px;border-style: solid;border-radius: 10px;margin-top: 1%;">
+            <div class="col" style="width: 50%;display: flex;" th:each="conteudo : ${conteudoLista}"><label class="form-label" style="margin-left: 5px;font-size: 17px;font-weight: bold;margin-top: 4px;width: Auto;" th:text="${conteudo.nome}">Introdução ao Spring Boot</label><a href="#" th:href="@{{link}(link=${conteudo.linkVideo})}" class="btn btn-primary" type="button" style="background: url(/assets/img/icons8-play-dentro-de-um-círculo-30.png) no-repeat;background-size: contain;width: 30px;height: 29px;margin-left: 68%;border-width: 0px;border-bottom-color: rgb(255,255,255);margin-top: 5px;"></a><a class="btn btn-primary" href="#" th:href="@{{link}(link=${conteudo.linkConteudo})}" type="button" style="background: url(/assets/img/icons8-modo-de-leitura-do-chrome-30.png) no-repeat;background-size: contain;width: 30px;height: 30px;margin-left: 1%;border-width: 0px;border-bottom-color: rgb(255,255,255);margin-top: 5px;"></a></div>
+        </div>
+
     </div>
     <footer class="text-center bg-dark" style="background: rgb(34, 34, 34);--bs-dark: #222222;--bs-dark-rgb: 34,34,34;">
         <div class="container text-white py-4 py-lg-5">

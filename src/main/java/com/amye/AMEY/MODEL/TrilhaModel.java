@@ -3,7 +3,6 @@ package com.amye.AMEY.MODEL;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +21,7 @@ public class TrilhaModel {
 	private String nome;
 	private String descricao;
 	private String imagem;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "trilha")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "trilhas")
 	private List<ConteudoTrilhaModel> conteudos;
 	@OneToOne
 	private ProvaModel provas;
@@ -76,11 +75,11 @@ public class TrilhaModel {
 		this.id = id;
 	}
 
-	public ProvaModel getProva() {
+	public ProvaModel getProvas() {
 		return provas;
 	}
 
-	public void setProva(ProvaModel prova) {
+	public void setProvas(ProvaModel prova) {
 		this.provas = prova;
 	}
 }

@@ -24,8 +24,8 @@ public class UsuarioController {
 	@PostMapping("/logar")
 	public String login(LoginDto loginDto) {
 		if(usuarioService.login(loginDto.transformarEmUsuario())) {
-			return "vagas";
+			return "redirect:/vaga";
 		}
-		return "login";
+		return "redirect:/usuario/login";
 	}
 }

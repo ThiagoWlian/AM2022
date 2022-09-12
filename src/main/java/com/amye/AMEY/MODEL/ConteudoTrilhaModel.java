@@ -1,6 +1,9 @@
 package com.amye.AMEY.MODEL;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -10,13 +13,24 @@ import javax.persistence.Table;
 public class ConteudoTrilhaModel {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nome;
+	@Column(name = "LINK_VIDEO")
 	private String linkVideo;
+	@Column(name = "LINK_CONTEUDO")
 	private String linkConteudo;
 	@ManyToOne
-	private TrilhaModel trilha;
+	private TrilhaModel trilhas;
 	
+	public ConteudoTrilhaModel() {}
+	
+	public ConteudoTrilhaModel(String nome, String linkVideo, String linkConteudo) {
+		this.nome = nome;
+		this.linkVideo = linkVideo;
+		this.linkConteudo = linkConteudo;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -42,11 +56,11 @@ public class ConteudoTrilhaModel {
 	}
 	
 	public TrilhaModel getTrilha() {
-		return trilha;
+		return trilhas;
 	}
 	
 	public void setTrilha(TrilhaModel trilha) {
-		this.trilha = trilha;
+		this.trilhas = trilha;
 	}
 
 	public int getId() {

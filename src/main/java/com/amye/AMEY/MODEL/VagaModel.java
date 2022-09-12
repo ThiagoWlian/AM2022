@@ -19,6 +19,8 @@ public class VagaModel {
 	private int id;
 	private String nome;
 	private String descricao;
+	private String beneficios;
+	private String prerequisitos;
 	private String salario;
 	private String tempo_experiencia;
 	
@@ -37,42 +39,84 @@ public class VagaModel {
 		this.tempo_experiencia = tempo_experiencia;
 	}
 	
+	public VagaModel(String nome, String descricao, String beneficios, String prerequisitos, String salario,
+			String tempo_experiencia) {
+		super();
+		this.nome = nome;
+		this.descricao = descricao;
+		this.beneficios = beneficios;
+		this.prerequisitos = prerequisitos;
+		this.salario = salario;
+		this.tempo_experiencia = tempo_experiencia;
+	}
+
+
+
 	public VagaModel() {}
 	
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public String getNome() {
 		return nome;
 	}
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
 	public String getDescricao() {
 		return descricao;
 	}
+	
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
 	public String getSalario() {
 		return salario;
 	}
+	
 	public void setSalario(String salario) {
 		this.salario = salario;
 	}
+	
 	public List<HabilidadeModel> getHabilidades() {
 		return habilidades;
 	}
+	
 	public void setHabilidades(List<HabilidadeModel> habilidades) {
 		this.habilidades = habilidades;
 	}
+	
 	public String getTempo_experiencia() {
 		return tempo_experiencia;
 	}
+	
 	public void setTempo_experiencia(String tempo_experiencia) {
 		this.tempo_experiencia = tempo_experiencia;
 	}
+
+	public String getBeneficios() {
+		return beneficios;
+	}
+
+	public void setBeneficios(String beneficios) {
+		this.beneficios = beneficios;
+	}
+
+	public String getPrerequisitos() {
+		return prerequisitos;
+	}
+
+	public void setPrerequisitos(String prerequisitos) {
+		this.prerequisitos = prerequisitos;
+	}
+	
 }
+

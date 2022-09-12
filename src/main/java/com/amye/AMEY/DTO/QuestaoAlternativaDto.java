@@ -1,7 +1,6 @@
 package com.amye.AMEY.DTO;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.amye.AMEY.MODEL.AlternativaModel;

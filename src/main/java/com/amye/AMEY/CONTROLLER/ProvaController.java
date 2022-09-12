@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -38,9 +39,9 @@ public class ProvaController {
 	@Autowired
 	private QuestaoService questaoService;
 	
-	@GetMapping
-	public String getTelaProva(Model model) {
-		model.addAttribute("provas", provaService.obterProva(17));
+	@GetMapping("/{idProva}")
+	public String getTelaProva(Model model,@PathVariable int idProva) {
+		model.addAttribute("provas", provaService.obterProva(idProva));
 		return "prova";
 	}
 	
@@ -69,7 +70,6 @@ public class ProvaController {
 			alternativas.forEach(e -> e.setQuestao(questao));
 			alternativaService.salvarListaAlternativasModel(alternativas);
 		}
-		
 		return "redirect:/trilha";
 	}
 }
