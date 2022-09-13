@@ -1,5 +1,8 @@
 package com.amye.AMEY.CONTROLLER;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.amye.AMEY.DTO.LoginDto;
+import com.amye.AMEY.DTO.UsuarioDo;
 import com.amye.AMEY.SERVICE.UsuarioService;
 
 @Controller
@@ -22,8 +26,12 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/logar")
-	public String login(LoginDto loginDto) {
+	public String login(LoginDto loginDto, HttpServletRequest request) {
 		if(usuarioService.login(loginDto.transformarEmUsuario())) {
+			UsuarioDo usuario = usuarioService.buscarUsuarioPeloLogin(loginDto.transformarEmUsuario());
+			HttpSession sessao = request.getSession();
+			sessao.setAttribute("user", usuario.getUser());
+			sessao.setAttribute("idUsER", usuario.getId());
 			return "redirect:/vaga";
 		}
 		return "redirect:/usuario/login";
