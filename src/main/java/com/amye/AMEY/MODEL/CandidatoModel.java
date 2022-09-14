@@ -1,9 +1,14 @@
 package com.amye.AMEY.MODEL;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,6 +25,11 @@ public class CandidatoModel {
 	private ProfissoesModel profissoes;
 	@OneToOne
 	private UsuarioModel usuario;
+	@ManyToMany
+	@JoinTable(name = "CANDIDATO_VAGAS",
+	joinColumns = @JoinColumn(name = "CANDIDATO_ID"),
+	inverseJoinColumns = @JoinColumn(name = "VAGAS_ID"))
+	private List<VagaModel> vagas;
 	
 	public ProfissoesModel getProfissao() {
 		return profissoes;
@@ -67,6 +77,10 @@ public class CandidatoModel {
 	
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public void addVaga(VagaModel vaga) {
+		vagas.add(vaga);
 	}
 	
 	public CandidatoModel(int id, String nome, String sobrenome, String email) {

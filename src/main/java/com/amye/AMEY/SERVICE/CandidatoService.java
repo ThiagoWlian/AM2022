@@ -34,8 +34,12 @@ public class CandidatoService {
 		candidatoRepository.save(candidatoModel);
 	}
 	
-	public CandidatoModel getCandidatoPorId(int id) {
-		Optional<CandidatoModel> canditatoOptional = candidatoRepository.findById(id);
+	public void atualizarCandidato(CandidatoModel candidato) {
+		candidatoRepository.saveAndFlush(candidato);
+	}
+	
+	public CandidatoModel getCandidatoPorIdUsuario(int id) {
+		Optional<CandidatoModel> canditatoOptional = candidatoRepository.findByUsuarioId(id);
 		if(canditatoOptional.isPresent()) {
 			return canditatoOptional.get();
 		}

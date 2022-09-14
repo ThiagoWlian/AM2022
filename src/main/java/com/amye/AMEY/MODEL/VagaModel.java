@@ -31,6 +31,9 @@ public class VagaModel {
 	)
 	private List<HabilidadeModel> habilidades;
 	
+	@ManyToMany(mappedBy = "vagas")
+	private List<CandidatoModel> candidatos;
+	
 	public VagaModel(String nome, String descricao, String salario, String tempo_experiencia) {
 		super();
 		this.nome = nome;
@@ -118,5 +121,8 @@ public class VagaModel {
 		this.prerequisitos = prerequisitos;
 	}
 	
+	public void addCandidato(CandidatoModel candidato) {
+		candidatos.add(candidato);
+	}
 }
 

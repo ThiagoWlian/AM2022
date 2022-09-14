@@ -31,7 +31,7 @@ public class UsuarioController {
 			UsuarioDo usuario = usuarioService.buscarUsuarioPeloLogin(loginDto.transformarEmUsuario());
 			HttpSession sessao = request.getSession();
 			sessao.setAttribute("user", usuario.getUser());
-			sessao.setAttribute("idUsER", usuario.getId());
+			sessao.setAttribute("idUser", usuario.getId());
 			return "redirect:/vaga";
 		}
 		return "redirect:/usuario/login";
