@@ -2,10 +2,14 @@ package com.amye.AMEY.CONTROLLER;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
+import com.amye.AMEY.MODEL.CandidatoModel;
+import com.amye.AMEY.SERVICE.TrilhasCandidatoSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,13 +34,16 @@ public class VagasController {
 	
 	@Autowired
 	private HabilidadesService habilidadesService;
-	
+
+	@Autowired
+	TrilhasCandidatoSerivce trilhasCandidatoSerivce;
+
 	@ModelAttribute("habilidades")
 	public List<HabilidadeModel> getListHabilidade() {
 		return new ArrayList<HabilidadeModel>();
 	}
 	
-	@GetMapping
+	@GetMapping("")
 	public String abrirListaTelaVagas(Model model) {
 		List<VagaModel> vagasLista = vagasService.listarVagas();
 		model.addAttribute("vagas", vagasLista);
@@ -49,7 +56,6 @@ public class VagasController {
 		int id = (int) sessao.getAttribute("idUser");
 		List<VagaModel> vagasLista = vagasService.listarVagasPorCandidato(id);
 		model.addAttribute("vagas", vagasLista);
-		System.out.println(id);
 		return "vagasCandidato";
 	}
 	
@@ -68,10 +74,16 @@ public class VagasController {
 	}
 	
 	@GetMapping("/candidatar/{idVaga}")
+	@Transactional
 	public String candidatrVaga(@PathVariable int idVaga, HttpServletRequest request) {
 		HttpSession sessao = request.getSession();
 		int id = (int) sessao.getAttribute("idUser");
+		CandidatoModel candidatoModel = (CandidatoModel) sessao.getAttribute("candidato");
 		vagasService.candidatar(id, idVaga);
+		Optional<VagaModel> vaga = vagasService.buscarVagaPorId(id);
+		if(vaga.isPresent()) {
+			trilhasCandidatoSerivce.salvarTrilhasCandidatoPorListHabilidades(vaga.get().getHabilidades(), candidatoModel);
+		}
 		return "redirect:/vaga/vagaCandidato";
 		
 	}

@@ -45,6 +45,14 @@ public class CandidatoService {
 		}
 		return null;
 	}
+
+	public void aumentarPontosCandidato(int idCandidato, int quantidadePontos) {
+		Optional<CandidatoModel> candidatoModel = candidatoRepository.findById(idCandidato);
+		if(candidatoModel.isPresent()) {
+			candidatoModel.get().aumentarPontos(quantidadePontos);
+			candidatoRepository.save(candidatoModel.get());
+		}
+	}
 	
 	public List<CandidatoModel> listarCandidatos(){
 		return candidatoRepository.findAll();

@@ -21,6 +21,7 @@ public class CandidatoModel {
 	private String nome;
 	private String sobrenome;
 	private String email;
+	private int pontos;
 	@OneToOne
 	private ProfissoesModel profissoes;
 	@OneToOne
@@ -82,7 +83,19 @@ public class CandidatoModel {
 	public void addVaga(VagaModel vaga) {
 		vagas.add(vaga);
 	}
-	
+
+	public int getPontos() {
+		return pontos;
+	}
+
+	public void setPontos(int pontos) {
+		this.pontos = pontos;
+	}
+
+	public void aumentarPontos(int pontos) {
+		this.pontos += pontos;
+	}
+
 	public CandidatoModel(int id, String nome, String sobrenome, String email) {
 		super();
 		this.id = id;

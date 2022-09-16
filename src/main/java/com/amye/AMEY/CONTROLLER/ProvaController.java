@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import com.amye.AMEY.SERVICE.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +19,6 @@ import com.amye.AMEY.MODEL.AlternativaModel;
 import com.amye.AMEY.MODEL.ProvaModel;
 import com.amye.AMEY.MODEL.QuestaoModel;
 import com.amye.AMEY.MODEL.TrilhaModel;
-import com.amye.AMEY.SERVICE.AlternativaService;
-import com.amye.AMEY.SERVICE.ProvaService;
-import com.amye.AMEY.SERVICE.QuestaoService;
-import com.amye.AMEY.SERVICE.TrilhaService;
 
 @Controller
 @RequestMapping("/prova")
@@ -32,6 +29,9 @@ public class ProvaController {
 	
 	@Autowired
 	private ProvaService provaService;
+
+	@Autowired
+	private TrilhasCandidatoSerivce trilhasCandidatoSerivce;
 	
 	@Autowired
 	private AlternativaService alternativaService;
@@ -59,11 +59,19 @@ public class ProvaController {
 		
 		ProvaModel prova = provaService.cadastrarProva(cadastroProvaDto.converterParaProvaModel());
 		trilhaService.atualizarProvaTrilha(cadastroProvaDto.getId(), prova);
-		
+
+		boolean questaoAprovada = false;
+
 		for(QuestaoAlternativaDto questaoDto : questoes) {
 			
 			QuestaoModel questao = questaoDto.getQuestaoModel();
 			questao.setProva(prova);
+			if(!questaoAprovada) {
+				questao.setTipo(true);
+				questaoAprovada = true;
+			} else {
+				questao.setTipo(false);
+			}
 			questaoService.salvarQuestaoModel(questao);
 			
 			List<AlternativaModel> alternativas = questaoDto.getListAlternativaModel();

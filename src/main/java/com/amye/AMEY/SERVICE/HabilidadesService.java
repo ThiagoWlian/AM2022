@@ -35,7 +35,6 @@ public class HabilidadesService {
 	public List<HabilidadeModel> cadastarListaDeHabilidades(List<HabilidadeModel> listaHabilidades) {
 		List<HabilidadeModel> habilidades = new ArrayList<HabilidadeModel>();
 		HabilidadeModel habilidadePersistida;
-		
 		for(HabilidadeModel habilidade : listaHabilidades) {
 			Optional<HabilidadeModel> habilidadeBusca = buscarHabilidadePeloNome(habilidade.getNome());
 			if(habilidadeBusca.isEmpty()) {

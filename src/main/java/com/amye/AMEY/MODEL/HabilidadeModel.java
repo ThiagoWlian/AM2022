@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -16,17 +18,20 @@ public class HabilidadeModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nome;
-	
+
 	@ManyToMany(mappedBy = "habilidades")
 	private List<VagaModel> vagas;
-	
+
+	@ManyToMany(mappedBy = "habilidades")
+	private List<TrilhaModel> trilhas;
+
 	public HabilidadeModel() {}
-	
+
 	public HabilidadeModel(String nome) {
 		super();
 		this.nome = nome;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -47,8 +52,16 @@ public class HabilidadeModel {
 	public void setVagas(List<VagaModel> vagas) {
 		this.vagas = vagas;
 	}
-	
-	public void addVaga(VagaModel vaga) {
+
+    public List<TrilhaModel> getTrilhas() {
+        return trilhas;
+    }
+
+    public void setTrilhas(List<TrilhaModel> trilhas) {
+        this.trilhas = trilhas;
+    }
+
+    public void addVaga(VagaModel vaga) {
 		vagas.add(vaga);
 	}
 }

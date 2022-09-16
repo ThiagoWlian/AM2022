@@ -47,4 +47,18 @@ public class ProvaService {
 		}
 		return prova;
 	}
+
+	public int avaliarProvaEmPorcentagemAcertos(List<QuestaoModel> questoes) {
+		int questoesCorretas = 0;
+		for (QuestaoModel questao : questoes) {
+			if(questao.isTipo()) {
+				questoesCorretas++;
+			}
+		}
+		return (questoesCorretas/(questoes.size()+1)) * 100;
+	}
+
+	public void envioProva() {
+
+	}
 }

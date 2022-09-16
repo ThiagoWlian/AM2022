@@ -3,6 +3,7 @@ package com.amye.AMEY.CONTROLLER;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.amye.AMEY.SERVICE.CandidatoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,9 @@ public class UsuarioController {
 	
 	@Autowired
 	UsuarioService usuarioService;
+
+	@Autowired
+	CandidatoService candidatoService;
 	
 	@GetMapping("/login")
 	public String telaLogin() {
@@ -32,6 +36,7 @@ public class UsuarioController {
 			HttpSession sessao = request.getSession();
 			sessao.setAttribute("user", usuario.getUser());
 			sessao.setAttribute("idUser", usuario.getId());
+			sessao.setAttribute("candidato", candidatoService.getCandidatoPorIdUsuario(usuario.getId()));
 			return "redirect:/vaga";
 		}
 		return "redirect:/usuario/login";

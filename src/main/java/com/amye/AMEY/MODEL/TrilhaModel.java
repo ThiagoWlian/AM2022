@@ -2,14 +2,7 @@ package com.amye.AMEY.MODEL;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "TRILHAS")
@@ -23,6 +16,14 @@ public class TrilhaModel {
 	private String imagem;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "trilhas")
 	private List<ConteudoTrilhaModel> conteudos;
+	@ManyToMany
+	@JoinTable(name = "TRILHAS_HABILIDADES",
+			joinColumns = @JoinColumn(name = "TRILHAS_ID"),
+			inverseJoinColumns = @JoinColumn(name = "HABILIDADES_ID"))
+	private List<HabilidadeModel> habilidades;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "trilhas")
+	private List<TrilhasCandidatoModel> trilhasCandidato;
 	@OneToOne
 	private ProvaModel provas;
 	
@@ -81,5 +82,13 @@ public class TrilhaModel {
 
 	public void setProvas(ProvaModel prova) {
 		this.provas = prova;
+	}
+
+	public List<HabilidadeModel> getHabilidades() {
+		return habilidades;
+	}
+
+	public void setHabilidades(List<HabilidadeModel> habilidades) {
+		this.habilidades = habilidades;
 	}
 }

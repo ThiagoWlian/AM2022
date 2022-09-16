@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.amye.AMEY.MODEL.ConteudoTrilhaModel;
+import com.amye.AMEY.MODEL.HabilidadeModel;
 import com.amye.AMEY.MODEL.ProvaModel;
 import com.amye.AMEY.MODEL.TrilhaModel;
 import com.amye.AMEY.REPOSITORY.ConteudoTrilhaRepository;
@@ -27,7 +28,8 @@ public class TrilhaService {
 		return trilhaRepository.findAll();
 	}
 	
-	public void cadastrarTrilha(TrilhaModel trilhaModel, List<ConteudoTrilhaModel> listaConteudos) {
+	public void cadastrarTrilha(TrilhaModel trilhaModel, List<ConteudoTrilhaModel> listaConteudos, List<HabilidadeModel> habilidades) {
+		trilhaModel.setHabilidades(habilidades);
 		TrilhaModel trilha = trilhaRepository.save(trilhaModel);
 		List<ConteudoTrilhaModel> conteudoTrans = new ArrayList<ConteudoTrilhaModel>();
 		
@@ -53,5 +55,9 @@ public class TrilhaService {
 			trilhaModel.get().setProvas(provaModel);
 			trilhaRepository.save(trilhaModel.get());
 		}
+	}
+
+	public List<TrilhaModel> buscarTrilhasPorHabilidades(List<HabilidadeModel> listaHabilidades) {
+		return listaHabilidades.stream().map(e -> trilhaRepository.findByHabilidadesId(e.getId()).get()).collect(Collectors.toList());
 	}
 }

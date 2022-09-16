@@ -3,8 +3,10 @@ package com.amye.AMEY.DTO;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.amye.AMEY.MODEL.ConteudoTrilhaModel;
+import com.amye.AMEY.MODEL.HabilidadeModel;
 import com.amye.AMEY.MODEL.TrilhaModel;
 
 public class CadastroTrilhaDto {
@@ -13,11 +15,16 @@ public class CadastroTrilhaDto {
 	private String descricao;
 	private String imagem;
 	private String listaConteudo;
+	private String listaHabilidades;
 	
 	public String getNome() {
 		return nome;
 	}
 	
+	public void setListaHabilidades(String listaHabilidades) {
+		this.listaHabilidades = listaHabilidades;
+	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -64,5 +71,13 @@ public class CadastroTrilhaDto {
 		}
 		
 		return listaDto;
+	}
+	
+	private List<String> getListaHabilidades(){
+		return new ArrayList<String>(Arrays.asList(listaHabilidades.split(";")));
+	}
+	
+	public List<HabilidadeModel> listarHabilidades() {
+		return getListaHabilidades().stream().map(e -> new HabilidadeModel(e)).collect(Collectors.toList());
 	}
 }

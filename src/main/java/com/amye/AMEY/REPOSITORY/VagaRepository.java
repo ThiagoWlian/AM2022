@@ -12,4 +12,5 @@ import com.amye.AMEY.MODEL.VagaModel;
 public interface VagaRepository extends JpaRepository<VagaModel, Integer>{
 	
 	public List<VagaModel> findAllByCandidatosId(int id);
+	public List<VagaModel> findAllByCandidatosIdNot(int id);
 }
