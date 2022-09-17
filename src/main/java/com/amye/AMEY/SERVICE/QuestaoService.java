@@ -1,6 +1,7 @@
 package com.amye.AMEY.SERVICE;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,9 @@ public class QuestaoService {
 	
 	public List<QuestaoModel> buscarQuestoesPelaProva(int idProva){
 		return questaoRepository.findByProvaId(idProva);
+	}
+
+	public List<QuestaoModel> transformaListaQustaoIdEmModel(List<Integer> lista) {
+		return lista.stream().map(e -> questaoRepository.findById(e).get()).collect(Collectors.toList());
 	}
 }

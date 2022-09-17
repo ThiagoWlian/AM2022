@@ -80,7 +80,7 @@ public class VagasController {
 		int id = (int) sessao.getAttribute("idUser");
 		CandidatoModel candidatoModel = (CandidatoModel) sessao.getAttribute("candidato");
 		vagasService.candidatar(id, idVaga);
-		Optional<VagaModel> vaga = vagasService.buscarVagaPorId(id);
+		Optional<VagaModel> vaga = vagasService.buscarVagaPorId(idVaga);
 		if(vaga.isPresent()) {
 			trilhasCandidatoSerivce.salvarTrilhasCandidatoPorListHabilidades(vaga.get().getHabilidades(), candidatoModel);
 		}

@@ -53,6 +53,16 @@ public class CandidatoService {
 			candidatoRepository.save(candidatoModel.get());
 		}
 	}
+
+	public int gerarLevel(CandidatoModel candidatoModel) {
+		int pontos = candidatoModel.getPontos();
+		return pontos/100;
+	}
+
+	public int gerarPontosRestante(CandidatoModel candidatoModel) {
+		int pontos = candidatoModel.getPontos();
+		return pontos%100;
+	}
 	
 	public List<CandidatoModel> listarCandidatos(){
 		return candidatoRepository.findAll();

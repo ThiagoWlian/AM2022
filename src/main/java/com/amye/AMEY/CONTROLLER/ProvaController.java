@@ -2,8 +2,12 @@ package com.amye.AMEY.CONTROLLER;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
+import com.amye.AMEY.DTO.RespostasProvaDto;
+import com.amye.AMEY.MODEL.*;
 import com.amye.AMEY.SERVICE.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.amye.AMEY.DTO.CadastroProvaDto;
 import com.amye.AMEY.DTO.QuestaoAlternativaDto;
-import com.amye.AMEY.MODEL.AlternativaModel;
-import com.amye.AMEY.MODEL.ProvaModel;
-import com.amye.AMEY.MODEL.QuestaoModel;
-import com.amye.AMEY.MODEL.TrilhaModel;
 
 @Controller
 @RequestMapping("/prova")
@@ -30,6 +30,8 @@ public class ProvaController {
 	@Autowired
 	private ProvaService provaService;
 
+	@Autowired
+	private  CandidatoService candidatoService;
 	@Autowired
 	private TrilhasCandidatoSerivce trilhasCandidatoSerivce;
 	
@@ -79,5 +81,17 @@ public class ProvaController {
 			alternativaService.salvarListaAlternativasModel(alternativas);
 		}
 		return "redirect:/trilha";
+	}
+
+	@PostMapping("/enviarProva")
+	public void envioProva(RespostasProvaDto respostasProvaDto, HttpServletRequest request) {
+		List<Integer> listaIdQuestoes = respostasProvaDto.converteParaAlternativasIdList();
+		int porcentagemAcertos = provaService.avaliarProvaEmPorcentagemAcertos(questaoService.transformaListaQustaoIdEmModel(listaIdQuestoes));
+		HttpSession sessao = request.getSession();
+		CandidatoModel candidatoModel = (CandidatoModel) sessao.getAttribute("candidato");
+		if (porcentagemAcertos >= 60) {
+			trilhasCandidatoSerivce.atualizarStatusParaTrue(candidatoModel.getId(), respostasProvaDto.getIdProva());
+			candidatoService.aumentarPontosCandidato(candidatoModel.getId(), porcentagemAcertos);
+		}
 	}
 }

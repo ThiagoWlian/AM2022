@@ -2,8 +2,11 @@ package com.amye.AMEY.CONTROLLER;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
+import com.amye.AMEY.MODEL.CandidatoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,8 +32,9 @@ public class TrilhasController {
 	HabilidadesService habilidadesService;
 	
 	@GetMapping
-	public String abrirListaTrilhasVagas(Model model) {
-		List<TrilhaModel> listarTrilhas = trilhaService.listarTrilhas();
+	public String abrirListaTrilhasVagas(Model model, HttpServletRequest request) {
+		CandidatoModel candidato = (CandidatoModel) request.getSession().getAttribute("candidato");
+		List<TrilhaModel> listarTrilhas = trilhaService.listarTrilhas(candidato.getId(), false);
 		model.addAttribute("listarTrilhas", listarTrilhas);
 		return "trilhas";
 	}

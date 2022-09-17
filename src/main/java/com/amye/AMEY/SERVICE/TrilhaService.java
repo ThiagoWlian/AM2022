@@ -27,6 +27,10 @@ public class TrilhaService {
 	public List<TrilhaModel> listarTrilhas(){
 		return trilhaRepository.findAll();
 	}
+
+	public List<TrilhaModel> listarTrilhas(int id, boolean status){
+		return trilhaRepository.findByTrilhasCandidatoTrilhasIdAndTrilhasCandidatoStatus(id, status);
+	}
 	
 	public void cadastrarTrilha(TrilhaModel trilhaModel, List<ConteudoTrilhaModel> listaConteudos, List<HabilidadeModel> habilidades) {
 		trilhaModel.setHabilidades(habilidades);
@@ -57,7 +61,7 @@ public class TrilhaService {
 		}
 	}
 
-	public List<TrilhaModel> buscarTrilhasPorHabilidades(List<HabilidadeModel> listaHabilidades) {
-		return listaHabilidades.stream().map(e -> trilhaRepository.findByHabilidadesId(e.getId()).get()).collect(Collectors.toList());
+	public List<Optional<TrilhaModel>> buscarTrilhasPorHabilidades(List<HabilidadeModel> listaHabilidades) {
+		return listaHabilidades.stream().map(e -> trilhaRepository.findByHabilidadesId(e.getId())).collect(Collectors.toList());
 	}
 }

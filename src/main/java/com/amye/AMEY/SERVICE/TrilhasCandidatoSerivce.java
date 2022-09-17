@@ -21,8 +21,8 @@ public class TrilhasCandidatoSerivce {
     @Autowired
     private TrilhaService trilhaService;
 
-    public void atualizarStatus(int idCandidato) {
-        Optional<TrilhasCandidatoModel> candidatoModel = buscarTrilhaCandidatoPorCandidato(idCandidato);
+    public void atualizarStatusParaTrue(int idCandidato, int idTrilha) {
+        Optional<TrilhasCandidatoModel> candidatoModel = buscarTrilhaCandidatoPorCandidato(idCandidato,idTrilha);
         if(candidatoModel.isPresent()) {
             candidatoModel.get().setStatus(true);
             trilhaCandidatoRepository.save(candidatoModel.get());
@@ -34,13 +34,22 @@ public class TrilhasCandidatoSerivce {
         trilhaCandidatoRepository.save(trilhasCandidatoModel);
     }
 
-    public Optional<TrilhasCandidatoModel> buscarTrilhaCandidatoPorCandidato(int idCandidato) {
-        return trilhaCandidatoRepository.findByCandidatoId(idCandidato);
+    public Optional<TrilhasCandidatoModel> buscarTrilhaCandidatoPorCandidato(int idCandidato, int idTrilha) {
+        return trilhaCandidatoRepository.findByCandidatoIdAndTrilhasId(idCandidato, idTrilha);
+    }
+
+    private boolean verificaSeExisteNoCadastrada(int idCandidato, int idTrilha) {
+        Optional<TrilhasCandidatoModel> conteudo = trilhaCandidatoRepository.findByCandidatoIdAndTrilhasId(idCandidato, idTrilha);
+        return conteudo.isEmpty();
     }
 
     @Transactional
     public void salvarTrilhasCandidatoPorListHabilidades(List<HabilidadeModel> listaHabilidades, CandidatoModel candidatoModel) {
-        List<TrilhaModel> listaTrilhas = trilhaService.buscarTrilhasPorHabilidades(listaHabilidades);
-        listaTrilhas.forEach(e -> cadastrarNovo(candidatoModel,e));
+        List<Optional<TrilhaModel>> listaTrilhas = trilhaService.buscarTrilhasPorHabilidades(listaHabilidades);
+        for (Optional<TrilhaModel> trilha : listaTrilhas) {
+            if(trilha.isPresent() && verificaSeExisteNoCadastrada(candidatoModel.getId(), trilha.get().getId())) {
+                cadastrarNovo(candidatoModel, trilha.get());
+            }
+        }
     }
 }
