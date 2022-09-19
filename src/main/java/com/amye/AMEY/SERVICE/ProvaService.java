@@ -48,17 +48,13 @@ public class ProvaService {
 		return prova;
 	}
 
-	public int avaliarProvaEmPorcentagemAcertos(List<QuestaoModel> questoes) {
+	public int avaliarProvaEmPorcentagemAcertos(List<AlternativaModel> alternativas) {
 		int questoesCorretas = 0;
-		for (QuestaoModel questao : questoes) {
+		for (AlternativaModel questao : alternativas) {
 			if(questao.isTipo()) {
 				questoesCorretas++;
 			}
 		}
-		return (questoesCorretas/(questoes.size()+1)) * 100;
-	}
-
-	public void envioProva() {
-
+		return (questoesCorretas/(alternativas.size())) * 100;
 	}
 }

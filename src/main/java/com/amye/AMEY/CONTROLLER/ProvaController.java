@@ -1,5 +1,6 @@
 package com.amye.AMEY.CONTROLLER;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,10 +41,14 @@ public class ProvaController {
 	
 	@Autowired
 	private QuestaoService questaoService;
+
+	List<Integer> respostas;
 	
 	@GetMapping("/{idProva}")
 	public String getTelaProva(Model model,@PathVariable int idProva) {
+		respostas = new ArrayList<>();
 		model.addAttribute("provas", provaService.obterProva(idProva));
+		model.addAttribute("respostas", respostas);
 		return "prova";
 	}
 	
@@ -62,36 +67,41 @@ public class ProvaController {
 		ProvaModel prova = provaService.cadastrarProva(cadastroProvaDto.converterParaProvaModel());
 		trilhaService.atualizarProvaTrilha(cadastroProvaDto.getId(), prova);
 
-		boolean questaoAprovada = false;
+		boolean alternativaAprovada = false;
 
 		for(QuestaoAlternativaDto questaoDto : questoes) {
 			
 			QuestaoModel questao = questaoDto.getQuestaoModel();
+			List<AlternativaModel> alternativas = questaoDto.getListAlternativaModel();
 			questao.setProva(prova);
-			if(!questaoAprovada) {
-				questao.setTipo(true);
-				questaoAprovada = true;
-			} else {
-				questao.setTipo(false);
+
+			for (AlternativaModel alternativa : alternativas) {
+				if(!alternativaAprovada) {
+					alternativa.setTipo(true);
+					alternativaAprovada = true;
+				} else {
+					alternativa.setTipo(false);
+				}
 			}
 			questaoService.salvarQuestaoModel(questao);
-			
-			List<AlternativaModel> alternativas = questaoDto.getListAlternativaModel();
 			alternativas.forEach(e -> e.setQuestao(questao));
 			alternativaService.salvarListaAlternativasModel(alternativas);
 		}
 		return "redirect:/trilha";
 	}
 
+
 	@PostMapping("/enviarProva")
-	public void envioProva(RespostasProvaDto respostasProvaDto, HttpServletRequest request) {
+	public String envioProva(RespostasProvaDto respostasProvaDto, HttpServletRequest request) {
 		List<Integer> listaIdQuestoes = respostasProvaDto.converteParaAlternativasIdList();
-		int porcentagemAcertos = provaService.avaliarProvaEmPorcentagemAcertos(questaoService.transformaListaQustaoIdEmModel(listaIdQuestoes));
+		int porcentagemAcertos = provaService.avaliarProvaEmPorcentagemAcertos(alternativaService.transformaListaAlternativaIdEmModel(listaIdQuestoes));
 		HttpSession sessao = request.getSession();
 		CandidatoModel candidatoModel = (CandidatoModel) sessao.getAttribute("candidato");
+		TrilhaModel trilha = trilhaService.buscarTrilhaPorProva(respostasProvaDto.getIdProva()).get();
 		if (porcentagemAcertos >= 60) {
-			trilhasCandidatoSerivce.atualizarStatusParaTrue(candidatoModel.getId(), respostasProvaDto.getIdProva());
+			trilhasCandidatoSerivce.atualizarStatusParaTrue(candidatoModel.getId(), trilha.getId());
 			candidatoService.aumentarPontosCandidato(candidatoModel.getId(), porcentagemAcertos);
 		}
+		return "redirect:/trilha";
 	}
 }

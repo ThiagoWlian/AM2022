@@ -3,8 +3,14 @@ package com.amye.AMEY.SERVICE;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
+import com.amye.AMEY.UTIL.CriteriaUtil;
+import org.hibernate.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,5 +72,14 @@ public class CandidatoService {
 	
 	public List<CandidatoModel> listarCandidatos(){
 		return candidatoRepository.findAll();
+	}
+
+	public List<CandidatoModel> listarCandidatoPorFiltro(String filtro, String valor) {
+		CriteriaBuilder cb = CriteriaUtil.getCriteria();
+		CriteriaQuery<CandidatoModel> cq = cb.createQuery(CandidatoModel.class);
+		Root<CandidatoModel> root = cq.from(CandidatoModel.class);
+		Predicate filtros = cb.and();
+		cq.where(cb.equal(root.get(filtro),valor));
+		return CriteriaUtil.getEntityManager().createQuery(cq).getResultList();
 	}
 }

@@ -22,8 +22,6 @@ public class QuestaoModel {
 	private ProvaModel prova;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questao")
 	private List<AlternativaModel> alternativas;
-
-	private boolean tipo;
 	
 	public QuestaoModel() {}
 		
@@ -77,13 +75,5 @@ public class QuestaoModel {
 	
 	public void setAlternativas(List<AlternativaModel> alternativas) {
 		this.alternativas = alternativas;
-	}
-
-	public boolean isTipo() {
-		return tipo;
-	}
-
-	public void setTipo(boolean tipo) {
-		this.tipo = tipo;
 	}
 }

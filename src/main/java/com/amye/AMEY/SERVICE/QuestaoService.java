@@ -23,8 +23,4 @@ public class QuestaoService {
 	public List<QuestaoModel> buscarQuestoesPelaProva(int idProva){
 		return questaoRepository.findByProvaId(idProva);
 	}
-
-	public List<QuestaoModel> transformaListaQustaoIdEmModel(List<Integer> lista) {
-		return lista.stream().map(e -> questaoRepository.findById(e).get()).collect(Collectors.toList());
-	}
 }

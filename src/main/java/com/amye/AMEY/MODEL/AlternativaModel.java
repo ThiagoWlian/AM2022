@@ -17,6 +17,7 @@ public class AlternativaModel {
 	
 	@ManyToOne
 	private QuestaoModel questao;
+	private boolean tipo;
 
 	public AlternativaModel() {}
 	
@@ -60,5 +61,13 @@ public class AlternativaModel {
 
 	public void setQuestao(QuestaoModel questao) {
 		this.questao = questao;
+	}
+
+	public boolean isTipo() {
+		return tipo;
+	}
+
+	public void setTipo(boolean tipo) {
+		this.tipo = tipo;
 	}
 }

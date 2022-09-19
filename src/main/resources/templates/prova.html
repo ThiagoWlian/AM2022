@@ -47,18 +47,20 @@
             <p class="fw-bold mb-0" style="color: rgb(254,249,249);margin-top: 4px;">Thiago Wlian</p>
         </div>
     </nav>
-    <div class="container py-4 py-xl-5">
+    <form action="/prova/enviarProva" method="post" class="container py-4 py-xl-5">
         <h2 style="margin-bottom: 28px;" th:text="${provas.nome}" >Teste da trilha de Spring Boot</h2>
         <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
             <div class="col" style="min-width: 100%;">
                 <div class="card"></div>
             </div>
-            <div  th:each="questao : ${provas.questoes}" class="col-12 col-xl-12" style="height: auto;border-radius: 5px;border: 1px solid var(--bs-gray-300);min-width: 100%;max-width: 100%;width: 100%;margin-top: 3%;padding-bottom: 26px;background: #ffffff;">
+            <div  th:each="questao, resposta : ${provas.questoes}" class="col-12 col-xl-12" style="height: auto;border-radius: 5px;border: 1px solid var(--bs-gray-300);min-width: 100%;max-width: 100%;width: 100%;margin-top: 3%;padding-bottom: 26px;background: #ffffff;">
                 <h4 class="text-dark mb-4" th:text="${questao.questao}" style="text-align: left;font-size: 26px;margin-top: 32px;margin-left: 1.5%;">1) Qual a função do Spring Boot em um projeto Java ?</h4>
-                <div th:each="alternativa : ${questao.alternativas}" style="display: flex;height: Auto;min-height: auto;max-height: none;margin-top: 1%;"><input type="radio" style="width: 25px;height: 25px;margin-left: 3%;display: inline-block;margin-top: 0.5%;"><label th:text="${alternativa.alternativa}" class="form-label" style="margin-left: 2%;font-size: 22px;margin-top: 0.1%;">Alternativa número um para teste</label></div>
+                <div th:each="alternativa : ${questao.alternativas}" style="display: flex;height: Auto;min-height: auto;max-height: none;margin-top: 1%;"><input type="radio" th:name="'resposta' + ${resposta.index}" th:value="${alternativa.id}" style="width: 25px;height: 25px;margin-left: 3%;display: inline-block;margin-top: 0.5%;"><label th:text="${alternativa.alternativa}" class="form-label" style="margin-left: 2%;font-size: 22px;margin-top: 0.1%;">Alternativa número um para teste</label></div>
+                <input type="hidden" name="idProva"
+                       id="idProva" th:value="${provas.id}">
             </div>
         </div><button class="btn btn-primary d-block btn-user w-100" id="submitBtn" type="submit" style="margin-top: 29px;font-size: 22px;">Enviar</button>
-    </div>
+    </form>
     <footer class="text-center bg-dark" style="background: rgb(34, 34, 34);--bs-dark: #222222;--bs-dark-rgb: 34,34,34;">
         <div class="container text-white py-4 py-lg-5">
             <ul class="list-inline">

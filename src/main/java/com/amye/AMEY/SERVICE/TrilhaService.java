@@ -29,7 +29,11 @@ public class TrilhaService {
 	}
 
 	public List<TrilhaModel> listarTrilhas(int id, boolean status){
-		return trilhaRepository.findByTrilhasCandidatoTrilhasIdAndTrilhasCandidatoStatus(id, status);
+		return trilhaRepository.findByTrilhasCandidatoCandidatoIdAndTrilhasCandidatoStatus(id, status);
+	}
+
+	public Optional<TrilhaModel> buscarTrilhaPorProva(int idProva) {
+		return trilhaRepository.findByProvasId(idProva);
 	}
 	
 	public void cadastrarTrilha(TrilhaModel trilhaModel, List<ConteudoTrilhaModel> listaConteudos, List<HabilidadeModel> habilidades) {

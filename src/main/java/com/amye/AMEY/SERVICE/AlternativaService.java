@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import com.amye.AMEY.MODEL.QuestaoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +29,9 @@ public class AlternativaService {
 	
 	public List<AlternativaModel> buscarAlternativasPorIdQuestao(int idQuestao) {
 		return alternativaRepository.findAllByQuestao(idQuestao);
+	}
+
+	public List<AlternativaModel> transformaListaAlternativaIdEmModel(List<Integer> lista) {
+		return lista.stream().map(e -> alternativaRepository.findById(e).get()).collect(Collectors.toList());
 	}
 }
