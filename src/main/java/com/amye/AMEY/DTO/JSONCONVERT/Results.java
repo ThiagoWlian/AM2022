@@ -1,6 +1,12 @@
 package com.amye.AMEY.DTO.JSONCONVERT;
 
+import com.amye.AMEY.MODEL.ExperienciaModel;
+import com.amye.AMEY.MODEL.FormacoesModel;
+import com.amye.AMEY.MODEL.HabilidadeModel;
+
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Results {
 	private ArrayList<ExperienciaProfissionalDto> workExperience;
@@ -38,5 +44,17 @@ public class Results {
 
 	public void setSkills(ArrayList<Skills> skills) {
 		this.skills = skills;
+	}
+
+	public List<HabilidadeModel> converteParaHabilidadesModel() {
+		return skills.stream().map(e -> new HabilidadeModel(e.getName())).collect(Collectors.toList());
+	}
+
+	public List<FormacoesModel> converteParaFormacoesModel() {
+		return education.stream().map(e -> new FormacoesModel(e)).collect(Collectors.toList());
+	}
+
+	public List<ExperienciaModel> converteParaExperienciaModel() {
+		return workExperience.stream().map(e -> new ExperienciaModel(e)).collect(Collectors.toList());
 	}
 }

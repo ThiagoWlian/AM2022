@@ -1,5 +1,7 @@
 package com.amye.AMEY.MODEL;
 
+import com.amye.AMEY.DTO.JSONCONVERT.Skills;
+
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -25,7 +27,15 @@ public class HabilidadeModel {
 	@ManyToMany(mappedBy = "habilidades")
 	private List<TrilhaModel> trilhas;
 
+	@ManyToMany(mappedBy = "habilidades")
+	private List<CurriculoModel> curriculos;
+
 	public HabilidadeModel() {}
+
+	public HabilidadeModel(Skills skills) {
+		this.nome = skills.getName();
+	}
+
 
 	public HabilidadeModel(String nome) {
 		super();

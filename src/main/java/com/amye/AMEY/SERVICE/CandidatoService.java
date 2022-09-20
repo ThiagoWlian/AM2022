@@ -32,12 +32,12 @@ public class CandidatoService {
 	UsuarioService usuarioService;
 	
 	@Transactional
-	public void cadastraCandidato(CandidatoModel candidatoModel, UsuarioModel usuario, int idProfissao) {
+	public CandidatoModel cadastraCandidato(CandidatoModel candidatoModel, UsuarioModel usuario, int idProfissao) {
 		UsuarioModel usuarioModel = usuarioService.cadastraUsuario(usuario);
 		ProfissoesModel profissoesModel = profissoesService.getProfissaoPorId(idProfissao);
 		candidatoModel.setProfissao(profissoesModel);
 		candidatoModel.setUsuario(usuarioModel);
-		candidatoRepository.save(candidatoModel);
+		return candidatoRepository.save(candidatoModel);
 	}
 	
 	public void atualizarCandidato(CandidatoModel candidato) {

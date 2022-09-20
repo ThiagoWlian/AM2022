@@ -1,5 +1,11 @@
 package com.amye.AMEY.CONTROLLER;
 
+import com.amye.AMEY.DTO.JSONCONVERT.Data;
+import com.amye.AMEY.MODEL.CurriculoModel;
+import com.amye.AMEY.MODEL.FormacoesModel;
+import com.amye.AMEY.SERVICE.CurriculoService;
+import com.amye.AMEY.SERVICE.ExperienciaService;
+import com.amye.AMEY.SERVICE.FormacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +23,16 @@ public class CandidatoController {
 	
 	@Autowired
 	CandidatoService candidatoService;
+
+	@Autowired
+	FormacaoService formacaoService;
+
+	@Autowired
+	ExperienciaService experienciaService;
+
+	@Autowired
+	CurriculoService curriculoService;
+
 	
 	@GetMapping("/telaCadastro")
 	public String telaCadastro() {
@@ -27,7 +43,12 @@ public class CandidatoController {
 	public String cadastro(CadastroCandidatoDto candidatoRequisicao) {
 		CandidatoModel candidatoModel = candidatoRequisicao.transformarEmCandidato();
 		UsuarioModel usuario = candidatoRequisicao.transformarEmUsuario();
-		candidatoService.cadastraCandidato(candidatoModel, usuario, candidatoRequisicao.getProfissao());
+		CandidatoModel candidatoCadastrado = candidatoService.cadastraCandidato(candidatoModel, usuario, candidatoRequisicao.getProfissao());
+
+		CurriculoModel curriculoCadastrado = curriculoService.criarNovoCurriculo(new CurriculoModel(candidatoCadastrado));
+		FormacoesModel formacoesModel = formacaoService.cadastrarFormacao(new FormacoesModel());
+
+
 		return "cadastroInicial";
 	}
 }
