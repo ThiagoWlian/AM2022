@@ -28,7 +28,7 @@ public class HabilidadeModel {
 	private List<TrilhaModel> trilhas;
 
 	@ManyToMany(mappedBy = "habilidades")
-	private List<CurriculoModel> curriculos;
+	private List<CurriculoModel> curriculo;
 
 	public HabilidadeModel() {}
 
@@ -40,6 +40,14 @@ public class HabilidadeModel {
 	public HabilidadeModel(String nome) {
 		super();
 		this.nome = nome;
+	}
+
+	public List<CurriculoModel> getCurriculo() {
+		return curriculo;
+	}
+
+	public void setCurriculo(List<CurriculoModel> curriculo) {
+		this.curriculo = curriculo;
 	}
 
 	public int getId() {
@@ -70,7 +78,9 @@ public class HabilidadeModel {
     public void setTrilhas(List<TrilhaModel> trilhas) {
         this.trilhas = trilhas;
     }
-
+	public void addCurriculo(CurriculoModel curriculoModel) {
+		curriculo.add(curriculoModel);
+	}
     public void addVaga(VagaModel vaga) {
 		vagas.add(vaga);
 	}

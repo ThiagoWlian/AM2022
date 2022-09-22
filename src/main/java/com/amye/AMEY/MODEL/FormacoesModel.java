@@ -15,7 +15,9 @@ public class FormacoesModel {
     private String titulo;
     private String organizacao;
     private String descricao;
+    @Column(name = "DATA_INICIO")
     private Date dataInicio;
+    @Column(name = "DATA_FIM")
     private Date dataFim;
     @ManyToOne
     private CurriculoModel curriculo;
@@ -23,8 +25,12 @@ public class FormacoesModel {
     public FormacoesModel(Education education) {
         this.titulo = education.getEducation();
         this.organizacao = education.getOrganization();
-        this.dataFim = Date.valueOf(education.getDatas().getCompletionDate());
-        this.dataInicio = Date.valueOf(education.getDatas().getStartDate());
+        if(education.getDatas().getCompletionDate() != null) {
+            this.dataFim = Date.valueOf(education.getDatas().getCompletionDate());
+        }
+        if(education.getDatas().getStartDate() != null) {
+            this.dataInicio = Date.valueOf(education.getDatas().getStartDate());
+        }
     }
 
     public FormacoesModel(){}

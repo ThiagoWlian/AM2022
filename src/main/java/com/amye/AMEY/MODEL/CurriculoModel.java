@@ -30,6 +30,23 @@ public class CurriculoModel {
         this.candidato = candidato;
     }
 
+    public CurriculoModel(CurriculoModel curriculoModel) {
+        this.id = curriculoModel.id;
+        this.candidato = curriculoModel.candidato;
+    }
+
+    public CurriculoModel() {
+
+    }
+
+    public List<HabilidadeModel> getHabilidades() {
+        return habilidades;
+    }
+
+    public void setHabilidades(List<HabilidadeModel> habilidades) {
+        this.habilidades = habilidades;
+    }
+
     public int getId() {
         return id;
     }

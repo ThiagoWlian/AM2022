@@ -14,7 +14,9 @@ public class ExperienciaModel {
     private String titulo;
     private String organizacao;
     private String descricao;
+    @Column(name = "DATA_INICIO")
     private Date dataInicio;
+    @Column(name = "DATA_FIM")
     private Date dataFim;
     @ManyToOne
     private CurriculoModel curriculo;
@@ -23,8 +25,12 @@ public class ExperienciaModel {
         this.titulo = experienciaProfissionalDto.getJobTitle();
         this.descricao = experienciaProfissionalDto.getJobDescription();
         this.organizacao = experienciaProfissionalDto.getOrganization();
-        this.dataInicio = Date.valueOf(experienciaProfissionalDto.getDates().getStartDate());
-        this.dataFim = Date.valueOf(experienciaProfissionalDto.getDates().getEndDate());
+        if(experienciaProfissionalDto.getDates().getStartDate() != null) {
+            this.dataInicio = Date.valueOf(experienciaProfissionalDto.getDates().getStartDate());
+        }
+        if(experienciaProfissionalDto.getDates().getEndDate() != null) {
+            dataFim = Date.valueOf(experienciaProfissionalDto.getDates().getEndDate());
+        }
     }
 
     public ExperienciaModel() {

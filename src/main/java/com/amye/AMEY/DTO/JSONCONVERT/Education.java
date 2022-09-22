@@ -4,7 +4,7 @@ public class Education {
 
     private String organization;
     private String education;
-    private DatasFormacao datas;
+    private DatasFormacao dates;
 
     public String getOrganization() {
         return organization;
@@ -23,10 +23,10 @@ public class Education {
     }
 
     public DatasFormacao getDatas() {
-        return datas;
+        return dates;
     }
 
     public void setDatas(DatasFormacao datas) {
-        this.datas = datas;
+        this.dates = datas;
     }
 }

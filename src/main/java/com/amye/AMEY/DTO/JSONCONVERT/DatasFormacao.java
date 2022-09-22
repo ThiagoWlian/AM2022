@@ -18,5 +18,6 @@ public class DatasFormacao {
 
     public void setCompletionDate(String completionDate) {
         this.completionDate = completionDate;
+        System.out.println(completionDate + "------------------------------------------------------------------------------------------");
     }
 }

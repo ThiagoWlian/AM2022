@@ -85,6 +85,5 @@ public class VagasController {
 			trilhasCandidatoSerivce.salvarTrilhasCandidatoPorListHabilidades(vaga.get().getHabilidades(), candidatoModel);
 		}
 		return "redirect:/vaga/vagaCandidato";
-		
 	}
 }
