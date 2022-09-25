@@ -9,6 +9,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
+import com.amye.AMEY.MODEL.HabilidadeModel;
 import com.amye.AMEY.UTIL.CriteriaUtil;
 import org.hibernate.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class CandidatoService {
 	
 	@Autowired
 	CandidatoRepository candidatoRepository;
-	
+
 	@Autowired
 	ProfissoesService profissoesService;
 	
@@ -81,5 +82,20 @@ public class CandidatoService {
 		Predicate filtros = cb.and();
 		cq.where(cb.equal(root.get(filtro),valor));
 		return CriteriaUtil.getEntityManager().createQuery(cq).getResultList();
+	}
+
+	public int calculaPontuacaoCandidato(List<HabilidadeModel> habilidadesCandidato, List<HabilidadeModel> habilidadesVaga) {
+		List<HabilidadeModel> listaPercorrida = habilidadesCandidato.size() > habilidadesVaga.size() ? habilidadesCandidato : habilidadesVaga;
+		List<HabilidadeModel> listaProcurada = habilidadesCandidato.size() < habilidadesVaga.size() ? habilidadesCandidato : habilidadesVaga;
+		int pontuacao = 0;
+
+		for(HabilidadeModel habilidade : listaPercorrida) {
+			for (HabilidadeModel habilidadeProcurada : listaProcurada) {
+				if(habilidadeProcurada.getNome().contains(habilidade.getNome()) || habilidade.getNome().contains(habilidadeProcurada.getNome())) {
+					pontuacao =+ 50;
+				}
+			}
+		}
+		return pontuacao;
 	}
 }

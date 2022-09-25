@@ -38,7 +38,10 @@ public class ProvaController {
 	
 	@Autowired
 	private AlternativaService alternativaService;
-	
+
+	@Autowired
+	private VagaCandidatoService vagaCandidatoService;
+
 	@Autowired
 	private QuestaoService questaoService;
 
@@ -101,6 +104,8 @@ public class ProvaController {
 		if (porcentagemAcertos >= 60) {
 			trilhasCandidatoSerivce.atualizarStatusParaTrue(candidatoModel.getId(), trilha.getId());
 			candidatoService.aumentarPontosCandidato(candidatoModel.getId(), porcentagemAcertos);
+			List<CandidatoVagasModel> candidatoVagasModelList = vagaCandidatoService.buscarCandidatosVagas(trilha.getHabilidades() ,candidatoModel);
+			vagaCandidatoService.aumentarPontos(candidatoVagasModelList,porcentagemAcertos);
 		}
 		return "redirect:/trilha";
 	}

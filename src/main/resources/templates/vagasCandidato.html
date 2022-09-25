@@ -50,23 +50,31 @@
     <div class="container py-4 py-xl-5">
         <h2 style="margin-bottom: 28px;">Minhas Vagas</h2>
         <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-            <div class="col" th:each="vaga : ${vagas}">
+            <div class="col" th:each="vaga : ${candidatoVagasList}">
                 <div class="card" style="display: block;position: relative;">
                     <div class="card-body p-4">
-                        <h4 class="card-title" style="border-bottom: 1px solid rgba(0,0,0,0.5);padding-bottom: 7px;" th:text="${vaga.nome}">Desenvolvedor Java Junior</h4>
+                        <h4 class="card-title" style="border-bottom: 1px solid rgba(0,0,0,0.5);padding-bottom: 7px;" th:text="${vaga.vagas.nome}">Desenvolvedor Java Junior</h4>
                         <p class="fw-bold mb-0">Resumo</p>
-                        <p class="card-text" style="margin-bottom: -10px;"><span style="color: rgb(51, 51, 51);" th:text="${#strings.abbreviate(vaga.descricao,170)}">Nossos trainees são contratados em regime CLT, com direito aos seguintes benefícios, conforme política vigente: subsídio de graduação.</span><br><br></p>
+                        <p class="card-text" style="margin-bottom: -10px;"><span style="color: rgb(51, 51, 51);" th:text="${#strings.abbreviate(vaga.vagas.descricao,170)}">Nossos trainees são contratados em regime CLT, com direito aos seguintes benefícios, conforme política vigente: subsídio de graduação.</span><br><br></p>
                         <div class="d-flex" style="display: block;"></div>
                         <div>
                             <div>
                                 <p class="fw-bold mb-0" style="margin-bottom: 0px;padding-bottom: 5px;">Requisitos</p>
                             </div>
-                            <span class="badge rounded-pill bg-primary mb-2" style="padding-right: 9.8px;padding-left: 9.8px;margin-left: 5px;" th:each="habilidade : ${vaga.habilidades}" th:text="${habilidade.nome}">Java</span>
+                            <span class="badge rounded-pill bg-primary mb-2" style="padding-right: 9.8px;padding-left: 9.8px;margin-left: 5px;" th:each="habilidade : ${vaga.vagas.habilidades}" th:text="${habilidade.nome}">Java</span>
                         </div>
                         <div style="display: block;">
-                            <p class="fw-bold mb-0">Salário</p><span class="badge rounded-pill bg-primary mb-2" style="margin-left: 5px;" th:text="${vaga.salario}">R$ 12.000</span>
+                            <p class="fw-bold mb-0">Salário</p><span class="badge rounded-pill bg-primary mb-2" style="margin-left: 5px;" th:text="${vaga.vagas.salario}">R$ 12.000</span>
                         </div>
-                        <div style="display: flex;"><a class="btn btn-primary" type="button" style="margin-left: 75%;background: #ffffff;color: rgb(0,0,0);display: flex;">Ver Mais</a></div>
+                        <div class="barra" style="display: block;"><label class="form-label" style="font-size: 11px;margin-bottom: 0px;height: 17px;width: 85%;" th:text="'Total de XP:' + ${vaga.pontos}">Total de XP: 700</label><label class="form-label" style="font-size: 11px;margin-bottom: 0px;height: 17px;margin-left: 0%;width: 15%;text-align: right;" th:text="'Level ' + ${vaga.calcularLevel()}">Level 7</label>
+                            <div style="width: 100%;height: 8px;border-radius: 3px;border-width: 1px;border-style: solid;margin-top: -3px;">
+                                <div class="barra-progresso" th:style="'width: '+ ${vaga.calcularPontosRestantes()}+'%'"></div>
+                            </div>
+                        </div>
+                        <div style="display: flex;height: 34px;margin-top: 6px;">
+                            <p class="fw-bold mb-0" style="width: 47%;height: 70px;">Status da candidatura:</p><label class="form-label" style="width: auto;max-width: 30%;min-width: 30%;" th:text="${vaga.status}">Em análise</label>
+                        </div>
+                        <div><a class="btn btn-primary" type="button" style="margin-left: 276px;background: #ffffff;color: rgb(0,0,0);margin-top: 13px;">Ver Mais</a></div>
                     </div>
                 </div>
             </div>

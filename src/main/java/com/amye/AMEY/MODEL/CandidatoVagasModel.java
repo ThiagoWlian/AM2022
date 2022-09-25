@@ -13,6 +13,7 @@ public class CandidatoVagasModel {
     @ManyToOne
     private CandidatoModel candidato;
     private String status;
+    private int pontos;
 
     public CandidatoVagasModel(VagaModel vaga, CandidatoModel candidato, String status) {
         this.vagas = vaga;
@@ -22,11 +23,11 @@ public class CandidatoVagasModel {
 
     public CandidatoVagasModel() {}
 
-    public VagaModel getVaga() {
+    public VagaModel getVagas() {
         return vagas;
     }
 
-    public void setVaga(VagaModel vaga) {
+    public void setVagas(VagaModel vaga) {
         this.vagas = vaga;
     }
 
@@ -52,5 +53,25 @@ public class CandidatoVagasModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
+    }
+
+    public void aumentarPontos(int pontos) {
+        this.pontos += pontos;
+    }
+
+    public int calcularLevel() {
+        return pontos/100;
+    }
+
+    public int calcularPontosRestantes() {
+        return pontos%100;
     }
 }

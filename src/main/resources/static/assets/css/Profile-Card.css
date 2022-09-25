@@ -7,3 +7,10 @@
   border-top-right-radius: 4px;
 }
 
+.barra-progresso{
+  position: absolute;
+  height: 6px;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  background-color: rgb(13,110,253);
+}

@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
-import com.amye.AMEY.MODEL.CandidatoModel;
-import com.amye.AMEY.SERVICE.TrilhasCandidatoSerivce;
+import com.amye.AMEY.MODEL.*;
+import com.amye.AMEY.SERVICE.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +20,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.amye.AMEY.DTO.CadastroVagaDto;
-import com.amye.AMEY.MODEL.HabilidadeModel;
-import com.amye.AMEY.MODEL.VagaModel;
-import com.amye.AMEY.SERVICE.HabilidadesService;
-import com.amye.AMEY.SERVICE.VagasService;
 
 @Controller
 @RequestMapping("/vaga")
@@ -31,9 +27,18 @@ public class VagasController {
 	
 	@Autowired
 	private VagasService vagasService;
+
+	@Autowired
+	private VagaCandidatoService vagaCandidatoService;
+
+	@Autowired
+	private CandidatoService candidatoService;
 	
 	@Autowired
 	private HabilidadesService habilidadesService;
+
+	@Autowired
+	private CurriculoService curriculoService;
 
 	@Autowired
 	TrilhasCandidatoSerivce trilhasCandidatoSerivce;
@@ -54,8 +59,9 @@ public class VagasController {
 	public String abrirListaTelaVagasCandidato(Model model, HttpServletRequest request) {
 		HttpSession sessao = request.getSession();
 		int id = (int) sessao.getAttribute("idUser");
-		List<VagaModel> vagasLista = vagasService.listarVagasPorCandidato(id);
-		model.addAttribute("vagas", vagasLista);
+		CandidatoModel candidato = (CandidatoModel) sessao.getAttribute("candidato");
+		List<CandidatoVagasModel> candidatoVagaList = vagaCandidatoService.buscarCandidatoVagaModelPeloCandidato(candidato.getId());
+		model.addAttribute("candidatoVagasList", candidatoVagaList);
 		return "vagasCandidato";
 	}
 	
@@ -75,15 +81,23 @@ public class VagasController {
 	
 	@GetMapping("/candidatar/{idVaga}")
 	@Transactional
-	public String candidatrVaga(@PathVariable int idVaga, HttpServletRequest request) {
+	public String candidatarVaga(@PathVariable int idVaga, HttpServletRequest request) {
 		HttpSession sessao = request.getSession();
 		int id = (int) sessao.getAttribute("idUser");
 		CandidatoModel candidatoModel = (CandidatoModel) sessao.getAttribute("candidato");
-		vagasService.candidatar(id, idVaga);
+		CurriculoModel curriculoModel = curriculoService.buscarCurriculoPeloCandidato(candidatoModel.getId());
+		CandidatoVagasModel candidatoVagasModel = vagasService.candidatar(id, idVaga);
 		Optional<VagaModel> vaga = vagasService.buscarVagaPorId(idVaga);
 		if(vaga.isPresent()) {
 			trilhasCandidatoSerivce.salvarTrilhasCandidatoPorListHabilidades(vaga.get().getHabilidades(), candidatoModel);
+			vagaCandidatoService.aumentarPontos(candidatoVagasModel,candidatoService.calculaPontuacaoCandidato(curriculoModel.getHabilidades() ,vaga.get().getHabilidades()));
 		}
 		return "redirect:/vaga/vagaCandidato";
+	}
+
+	@GetMapping("/detalhe/{idVaga}")
+	public String detalharVaga(@PathVariable int idVaga, Model model) {
+		model.addAttribute("vaga", vagasService.buscarVagaPorId(idVaga).get());
+		return "VagaDetalhes";
 	}
 }

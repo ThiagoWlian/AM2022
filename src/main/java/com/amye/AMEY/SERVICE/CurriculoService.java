@@ -53,8 +53,9 @@ public class CurriculoService {
 
         formacoesRepository.saveAll(formacoesModelList);
         experienciaRepository.saveAll(experienciaModelList);
-        habilidadesService.cadastarListaDeHabilidades(habilidadeModelList);
-
+        List<HabilidadeModel> habilidadesListar = habilidadesService.cadastarListaDeHabilidades(habilidadeModelList);
+        curriculoCadastrado.setHabilidades(habilidadesListar);
+        curriculoRepository.save(curriculoCadastro);
     }
 
     public CurriculoModel buscarCurriculoPeloCandidato(int idCandditado) {

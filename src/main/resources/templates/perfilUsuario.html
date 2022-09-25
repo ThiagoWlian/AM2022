@@ -54,87 +54,96 @@
         </div>
     </div>
 </nav>
-<div class="container"
-     style="position: static;left: 0;right: 0;top: 50%;transform: translateY(-50%);-ms-transform: translateY(-50%);-moz-transform: translateY(-50%);-webkit-transform: translateY(-50%);-o-transform: translateY(-50%);height: auto;min-height: auto;margin-top: 5%;">
-    <div class="row d-flex d-xl-flex justify-content-center justify-content-xl-center"
-         style="margin-top: 570px;margin-bottom: -143px;height: auto;min-height: auto;">
-        <div class="col-sm-12 col-lg-10 col-xl-9 col-xxl-7 bg-white shadow-lg"
-             style="border-radius: 5px;max-height: none;height: auto;">
-            <div class="p-5" style="height: auto;">
-                <form class="user">
-                    <h4 class="text-dark mb-4"
-                        style="text-align: left;font-size: 26px;margin-top: 10px;margin-left: 0;margin-bottom: 0px;">Meu
-                        Perfil</h4>
-                    <hr style="margin-top: 0px;">
-                    <div style="display: flex;margin-top: 2%;"><img class="rounded-circle"
-                                                                    style="height: 50px;height: 109px;margin-right: 13px;margin-top: 3px;width: 109px;"
-                                                                    src="/assets/img/perfil.jpg" width="53" height="40">
-                        <div class="row mb-3" style="margin-top: 2%;">
-                            <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text"
-                                                                      th:field="${candidato.nome}"
-                                                                      placeholder="First Name" required=""></div>
-                            <div class="col-sm-6"><input class="form-control form-control-user" type="text"
-                                                         placeholder="Last Name" th:field="${candidato.sobrenome}"
-                                                         required=""></div>
-                            <div class="mb-3"><input class="form-control form-control-user" type="email" id="email"
-                                                     th:field="${candidato.email}" placeholder="Email Address"
-                                                     required="" style="margin-top: 9px;"></div>
+<div class="row d-flex d-xl-flex justify-content-center justify-content-xl-center"
+     style="margin-top: 100px;margin-bottom: 100px;height: auto;min-height: auto;">
+    <div class="col-sm-12 col-lg-10 col-xl-9 col-xxl-7 bg-white shadow-lg"
+         style="border-radius: 5px;max-height: none;height: auto;">
+        <div class="p-5" style="height: auto;">
+            <form class="user">
+                <h4 class="text-dark mb-4"
+                    style="text-align: left;font-size: 26px;margin-top: 10px;margin-left: 0;margin-bottom: 0px;">Meu
+                    Perfil</h4>
+                <hr style="margin-top: 0px;">
+                <div style="display: flex;margin-top: 2%;">
+                    <img
+                            style="height: 50px;height: 109px;margin-right: 13px;margin-top: 3px;width: 109px;"
+                            src="/assets/img/perfil.jpg" width="53" height="40">
+                    <div class="row mb-3" style="margin-top: 2%;width: 100%;">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <input class="form-control form-control-user" type="text"
+                                   th:field="${candidato.nome}"
+                                   placeholder="First Name">
+                        </div>
+                        <div class="col-sm-6">
+                            <input class="form-control form-control-user" type="text"
+                                   placeholder="Last Name" th:field="${candidato.sobrenome}">
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control form-control-user" type="email" id="email"
+                                   th:field="${candidato.email}" placeholder="Email Address"
+                                   style="margin-top: 9px;">
                         </div>
                     </div>
-                    <div>
-                        <h4 class="text-dark mb-4"
-                            style="text-align: left;font-size: 19px;margin-top: 10px;margin-left: 0;margin-bottom: -1px;">
-                            Formações</h4>
-                        <div th:each="formacao,fstat : ${formacoes}" style="margin-bottom: 5%;margin-top: 1%">
-                            <input class="form-control form-control-user"
-                                   id="email-1"
-                                   placeholder="Título da Formação"
-                                   th:value="${formacao.titulo}"
-                                   style="margin-top: 0px;margin-bottom: 10px;">
+                </div>
+                <div>
+                    <h4 class="text-dark mb-4"
+                        style="text-align: left;font-size: 19px;margin-top: 10px;margin-left: 0;margin-bottom: -1px;">
+                        Formações</h4>
+                    <div th:each="formacao,fstat : ${formacoes}" style="margin-bottom: 5%;margin-top: 1%">
+                        <input class="form-control form-control-user"
+                               id="email-1"
+                               placeholder="Título da Formação"
+                               th:value="${formacao.titulo}"
+                               style="margin-top: 0px;margin-bottom: 10px;">
+                        <input
+                                class="form-control form-control-user" id="email-2"
+                                placeholder="Intituição de ensino" th:value="${formacao.organizacao}"
+                                style="margin-top: 0px;margin-bottom: 10px;">
+                        <div style="display: flex;"><input class="form-control form-control-user" type="text"
+                                                           th:value="${formacao.dataInicio}"
+                                                           placeholder="Data de início">
                             <input
-                                    class="form-control form-control-user" id="email-2"
-                                    placeholder="Intituição de ensino" th:value="${formacao.organizacao}"
-                                    style="margin-top: 0px;margin-bottom: 10px;">
-                            <div style="display: flex;"><input class="form-control form-control-user" type="text"
-                                                               th:value="${formacao.dataInicio}"
-                                                               placeholder="Data de início">
-                                <input
-                                        class="form-control form-control-user" placeholder="Data do fim"
-                                        th:value="${formacao.dataFim}" style="margin-left: 1%;"></div>
-                        </div>
-                    </div>
-                    <div style="margin-top: 3%;">
-                        <h4 class="text-dark mb-4"
-                            style="text-align: left;font-size: 19px;margin-top: 10px;margin-left: 0;margin-bottom: -1px;">
-                            Experiência Profissional</h4>
-                        <div th:each="experiencia : ${experiencias}"><input class="form-control form-control-user" id="email-4" placeholder="Cargo"
-                                    th:value="${experiencia.titulo}" style="margin-top: 0px;margin-bottom: 10px;"><input
-                                class="form-control form-control-user" type="email" id="email-3"
-                                placeholder="Nome da organização" required=""
-                                style="margin-top: 0px;margin-bottom: 10px;"><textarea class="form-control" th:value="${experiencia.descricao}" placeholder="Descrição"></textarea>
-                            <div style="display: flex;margin-top: 1%;"><input class="form-control form-control-user"
-                                                                              th:value="${experiencia.dataInicio}" placeholder="Data de início"
-                                                                              ><input
                                     class="form-control form-control-user" placeholder="Data do fim"
-                                    th:value="${experiencia.dataFim}" style="margin-left: 1%;"></div>
-                        </div>
+                                    th:value="${formacao.dataFim}" style="margin-left: 1%;"></div>
                     </div>
+                </div>
+                <div style="margin-top: 3%;">
                     <h4 class="text-dark mb-4"
-                        style="text-align: left;font-size: 19px;margin-top: 20px;margin-left: 0;margin-bottom: -1px;">
+                        style="text-align: left;font-size: 19px;margin-top: 10px;margin-left: 0;margin-bottom: -1px;">
                         Experiência Profissional</h4>
-                    <div class="col-sm-6 col-xl-11 col-xxl-11 mb-3 mb-sm-0"
-                         style="width: auto;display: flex;margin-top: -1%;"><input
-                            class="form-control form-control-user" type="text" placeholder="Habilidades" required=""
-                            style="width: 668.016px;">
-                        <button class="btn btn-primary" type="button" style="margin-left: 17px;height: 35px;">Add
-                        </button>
+                    <div th:each="experiencia : ${experiencias}" style="margin-bottom: 5%;margin-top: 1%"><input
+                            class="form-control form-control-user" id="email-4" placeholder="Cargo"
+                            th:value="${experiencia.titulo}" style="margin-top: 0px;margin-bottom: 10px;"><input
+                            class="form-control form-control-user" type="email" id="email-3"
+                            placeholder="Nome da organização" th:value="${experiencia.organizacao}"
+                            style="margin-top: 0px;margin-bottom: 10px;"><textarea style="height: 150px;"
+                                                                                   class="form-control"
+                                                                                   th:text="${experiencia.descricao}"
+                                                                                   placeholder="Descrição"></textarea>
+                        <div style="display: flex;margin-top: 1%;"><input class="form-control form-control-user"
+                                                                          th:value="${experiencia.dataInicio}"
+                                                                          placeholder="Data de início"
+                        ><input
+                                class="form-control form-control-user" placeholder="Data do fim"
+                                th:value="${experiencia.dataFim}" style="margin-left: 1%;"></div>
                     </div>
-                    <button class="btn btn-primary d-block btn-user w-100" id="submitBtn" type="submit"
-                            style="margin-top: 2%;">Salvar
+                </div>
+                <h4 class="text-dark mb-4"
+                    style="text-align: left;font-size: 19px;margin-top: 20px;margin-left: 0;margin-bottom: -1px;">
+                    Experiência Profissional</h4>
+                <div class="col-sm-6 col-xl-11 col-xxl-11 mb-3 mb-sm-0"
+                     style="width: 90%;display: flex;margin-top: -1%;"><input
+                        class="form-control form-control-user" type="text" placeholder="Habilidades"
+                        style="width: 100%;">
+                    <button class="btn btn-primary" type="button" style="margin-left: 17px;height: 35px;">Add
                     </button>
-                    <hr>
-                </form>
-            </div>
+                </div>
+                <span class="badge rounded-pill bg-primary mb-2" style="padding-right: 9.8px;padding-left: 9.8px;margin-left: 5px;" th:each="habilidade : ${curriculo.habilidades}" th:text="${habilidade.nome}">Java</span>
+                <button class="btn btn-primary d-block btn-user w-100" id="submitBtn" type="submit"
+                        style="margin-top: 2%;">Salvar
+                </button>
+                <hr>
+            </form>
         </div>
     </div>
 </div>

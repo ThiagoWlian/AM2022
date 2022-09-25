@@ -23,7 +23,7 @@ public class FormacoesModel {
     private CurriculoModel curriculo;
 
     public FormacoesModel(Education education) {
-        this.titulo = education.getEducation();
+        this.titulo = education.getAccreditation().getEducation();
         this.organizacao = education.getOrganization();
         if(education.getDatas().getCompletionDate() != null) {
             this.dataFim = Date.valueOf(education.getDatas().getCompletionDate());

@@ -84,4 +84,12 @@ public class ExperienciaModel {
     public void setCurriculo(CurriculoModel curriculo) {
         this.curriculo = curriculo;
     }
+
+    public String getOrganizacao() {
+        return organizacao;
+    }
+
+    public void setOrganizacao(String organizacao) {
+        this.organizacao = organizacao;
+    }
 }

@@ -55,12 +55,12 @@ public class VagasService {
 		return vagaList;
 	}
 	
-	public void candidatar(int idCandidato, int idVaga){
+	public CandidatoVagasModel candidatar(int idCandidato, int idVaga){
 		Optional<VagaModel> vaga = vagaRepository.findById(idVaga);
 		CandidatoModel candidato = candidatoService.getCandidatoPorIdUsuario(idCandidato);
 
 		CandidatoVagasModel candidatoVagasModel = new CandidatoVagasModel(vaga.get(), candidato, "Análise");
-		candidatoVagasRepository.save(candidatoVagasModel);
+		return candidatoVagasRepository.save(candidatoVagasModel);
 	}
 
 	public void atualizarStatus(int id, String status) {
