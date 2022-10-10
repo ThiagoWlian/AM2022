@@ -128,8 +128,6 @@
                     </button>
                 </div>
                 <span class="badge rounded-pill bg-primary mb-2" style="padding-right: 9.8px;padding-left: 9.8px;margin-left: 5px;" th:each="habilidade : ${curriculo.habilidades}" th:text="${habilidade.nome}">Java</span>
-                <button class="btn btn-primary d-block btn-user w-100"
-                        style="margin-top: 2%;" id="submitBtn" type="submit">Salvar</button>
                 <hr>
                 <input type="hidden" name="idCandidato"
                        id="idCandidato" th:value="${candidato.id}">

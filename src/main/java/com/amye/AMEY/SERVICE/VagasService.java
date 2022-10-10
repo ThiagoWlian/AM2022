@@ -3,6 +3,7 @@ package com.amye.AMEY.SERVICE;
 import java.util.List;
 import java.util.Optional;
 
+import com.amye.AMEY.DTO.VagasAdmDto;
 import com.amye.AMEY.MODEL.CandidatoVagasModel;
 import com.amye.AMEY.REPOSITORY.CandidatoVagasRepository;
 import com.amye.AMEY.UTIL.CriteriaUtil;
@@ -82,5 +83,18 @@ public class VagasService {
 		Predicate filtros = cb.and();
 		cq.where(cb.equal(root.get(filtro),valor));
 		return CriteriaUtil.getEntityManager().createQuery(cq).getResultList();
+	}
+
+	public List<VagasAdmDto> buscarVagasQuantidade() {
+		return vagaRepository.findAllQuantidade();
+	}
+
+	public List<VagasAdmDto> buscarVagasQuantidadeFiltro(String filtro) {
+		return vagaRepository.findAllQuantidadeFiltro(filtro);
+	}
+
+
+	public void removerVaga(int id) {
+		vagaRepository.deleteById(id);
 	}
 }

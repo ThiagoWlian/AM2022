@@ -1,5 +1,6 @@
 package com.amye.AMEY.SERVICE;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
+import com.amye.AMEY.DTO.CandidatoAtualizarDTO;
+import com.amye.AMEY.DTO.FiltroDTO;
 import com.amye.AMEY.MODEL.HabilidadeModel;
 import com.amye.AMEY.UTIL.CriteriaUtil;
 import org.hibernate.Criteria;
@@ -40,7 +43,11 @@ public class CandidatoService {
 		candidatoModel.setUsuario(usuarioModel);
 		return candidatoRepository.save(candidatoModel);
 	}
-	
+
+	public CandidatoModel getCandidatoPorId(int id) {
+		return candidatoRepository.findById(id).get();
+	}
+
 	public void atualizarCandidato(CandidatoModel candidato) {
 		candidatoRepository.saveAndFlush(candidato);
 	}
@@ -97,5 +104,32 @@ public class CandidatoService {
 			}
 		}
 		return pontuacao;
+	}
+
+	public List<CandidatoModel> buscarCandidatosVagaOrderByPontos(int idVaga) {
+		return candidatoRepository.findByVagasOrderByPontosDesc(idVaga);
+	}
+
+	public List<CandidatoModel> buscarCandidatosVagaPorFiltroOrderByPontos(int idVaga, FiltroDTO filtroDTO) {
+		if(filtroDTO.isHabilidade()) {
+			return candidatoRepository.findByVagasHabilidadeOrderByPontosDesc(idVaga, filtroDTO.getFiltro());
+		}
+		if(filtroDTO.isNome()) {
+			return candidatoRepository.findByVagasCandidatoNomeOrderByPontosDesc(idVaga, filtroDTO.getFiltro());
+		}
+		if(filtroDTO.isSobrenome()) {
+			return candidatoRepository.findByVagasCandidatoSobrenomeOrderByPontosDesc(idVaga, Integer.valueOf(filtroDTO.getFiltro()));
+		}
+		if(filtroDTO.isPontos()) {
+			return candidatoRepository.findByVagasCandidatoPontosOrderByPontosDesc(idVaga, filtroDTO.getFiltro());
+		}
+		return new ArrayList<CandidatoModel>();
+	}
+
+	public void atualizarCandidato(CandidatoAtualizarDTO candidatoAtualizarDTO) {
+		Optional<CandidatoModel> candidatoModel = candidatoRepository.findById(candidatoAtualizarDTO.getIdCandidato());
+		if(candidatoModel.isPresent()) {
+			candidatoRepository.save(candidatoAtualizarDTO.converterParaCandidatoModel(candidatoModel.get()));
+		}
 	}
 }

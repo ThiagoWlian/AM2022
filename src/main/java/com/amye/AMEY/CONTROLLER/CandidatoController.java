@@ -1,6 +1,8 @@
 package com.amye.AMEY.CONTROLLER;
 
+import com.amye.AMEY.DTO.CandidatoAtualizarDTO;
 import com.amye.AMEY.DTO.JSONCONVERT.Data;
+import com.amye.AMEY.DTO.StatusCandidatoDto;
 import com.amye.AMEY.MODEL.CurriculoModel;
 import com.amye.AMEY.MODEL.FormacoesModel;
 import com.amye.AMEY.SERVICE.CurriculoService;
@@ -9,9 +11,7 @@ import com.amye.AMEY.SERVICE.FormacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.amye.AMEY.DTO.CadastroCandidatoDto;
 import com.amye.AMEY.MODEL.CandidatoModel;
@@ -54,6 +54,17 @@ public class CandidatoController {
 		model.addAttribute("experiencias", curriculo.getExperiencias());
 
 		return "/perfilUsuario";
+	}
+
+	@GetMapping("/perfil/{id}")
+	public String abrirPerfil(Model model,@PathVariable int id) {
+		CandidatoModel candidato = candidatoService.getCandidatoPorId(id);
+		CurriculoModel curriculo = curriculoService.buscarCurriculoPeloCandidato((candidato).getId());
+		model.addAttribute("curriculo", curriculo);
+		model.addAttribute("candidato", candidato);
+		model.addAttribute("formacoes", curriculo.getFormacoes());
+		model.addAttribute("experiencias", curriculo.getExperiencias());
+		return "perfilCandidatoGerencia";
 	}
 	
 	@PostMapping("/cadastro")
@@ -834,5 +845,16 @@ public class CandidatoController {
 		curriculoService.criarNovoCurriculo(curriculoModel);
 
 		return "cadastroInicial";
+	}
+
+	@PutMapping("/status")
+	public String atualizarStatus(StatusCandidatoDto statusCandidatoDto) {
+		return "redirect:/vaga/gerencia";
+	}
+
+	@PostMapping("/atualizar")
+	public String atualizarCandidato(CandidatoAtualizarDTO candidatoAtualizarDTO) {
+		candidatoService.atualizarCandidato(candidatoAtualizarDTO);
+		return "redirect:/vaga/vagaCandidato";
 	}
 }

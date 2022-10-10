@@ -8,16 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
+import com.amye.AMEY.DTO.FiltroDTO;
 import com.amye.AMEY.MODEL.*;
 import com.amye.AMEY.SERVICE.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.amye.AMEY.DTO.CadastroVagaDto;
 
@@ -99,5 +96,36 @@ public class VagasController {
 	public String detalharVaga(@PathVariable int idVaga, Model model) {
 		model.addAttribute("vaga", vagasService.buscarVagaPorId(idVaga).get());
 		return "VagaDetalhes";
+	}
+	@GetMapping("/gerencia")
+	public String listarVagasAdm(Model model) {
+		model.addAttribute("vagas", vagasService.buscarVagasQuantidade());
+		return "VagasAdm";
+	}
+
+	@GetMapping("/remover/{idVaga}")
+	public String removerVaga(@PathVariable int idVaga) {
+		vagasService.removerVaga(idVaga);
+		return "redirect:/vaga/gerencia";
+	}
+
+	@GetMapping("/listarCandidatos/{idVaga}")
+	public String listarCandidatosVaga(Model model, @PathVariable int idVaga) {
+		model.addAttribute("candidatos", candidatoService.buscarCandidatosVagaOrderByPontos(idVaga));
+		model.addAttribute("idVaga", idVaga);
+		return "CandidatosVaga";
+	}
+
+	@PostMapping("/listarCandidatos/filtro/{idVaga}")
+	public String listarCandidatosVagaFiltro(Model model, @PathVariable int idVaga,FiltroDTO filtroDTO) {
+		model.addAttribute("candidatos", candidatoService.buscarCandidatosVagaPorFiltroOrderByPontos(idVaga, filtroDTO));
+		model.addAttribute("idVaga", idVaga);
+		return "CandidatosVaga";
+	}
+
+	@PostMapping("/gerencia/filtro")
+	public String listarVagasAdmFiltro(Model model, FiltroDTO filtroDTO) {
+		model.addAttribute("vagas", vagasService.buscarVagasQuantidadeFiltro(filtroDTO.getFiltro()));
+		return "VagasAdm";
 	}
 }

@@ -65,8 +65,7 @@
                     Perfil</h4>
                 <hr style="margin-top: 0px;">
                 <div style="display: flex;margin-top: 2%;">
-                    <img
-                            style="height: 50px;height: 109px;margin-right: 13px;margin-top: 3px;width: 109px;"
+                    <img style="height: 50px;height: 109px;margin-right: 13px;margin-top: 3px;width: 109px;"
                             src="/assets/img/perfil.jpg" width="53" height="40">
                     <div class="row mb-3" style="margin-top: 2%;width: 100%;">
                         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -113,10 +112,20 @@
                             th:value="${experiencia.titulo}" style="margin-top: 0px;margin-bottom: 10px;">
                         <input class="form-control form-control-user" placeholder="Nome da organização" th:value="${experiencia.organizacao}" style="margin-top: 0px;margin-bottom: 10px;">
                         <textarea style="height: 150px;" class="form-control" th:text="${experiencia.descricao}" placeholder="Descrição"></textarea>
-                        <div style="display: flex;margin-top: 1%;"><input class="form-control form-control-user" th:value="${experiencia.dataInicio}" placeholder="Data de início">
-                            <input class="form-control form-control-user" placeholder="Data do fim" th:value="${experiencia.dataFim}" style="margin-left: 1%;"></div>
+                        <div style="display: flex;margin-top: 1%;">
+                            <input class="form-control form-control-user" th:value="${experiencia.dataInicio}" placeholder="Data de início">
+                            <input class="form-control form-control-user" placeholder="Data do fim" th:value="${experiencia.dataFim}" style="margin-left: 1%;">
+                        </div>
                     </div>
                 </div>
+                <select name="status" style="height: 36px;margin-right: 6px;padding-left: 5px;">
+                    <optgroup name="status" label="Status">
+                        <option name="status" value="nome" selected="">Em análise</option>
+                        <option name="status" value="sobrenome">Teste</option>
+                        <option name="status" value="pontos">Entrevista</option>
+                        <option name="status" value="habilidade">Aprovado</option>
+                    </optgroup>
+                </select>
                 <h4 class="text-dark mb-4"
                     style="text-align: left;font-size: 19px;margin-top: 20px;margin-left: 0;margin-bottom: -1px;">
                     Experiência Profissional</h4>
@@ -128,8 +137,6 @@
                     </button>
                 </div>
                 <span class="badge rounded-pill bg-primary mb-2" style="padding-right: 9.8px;padding-left: 9.8px;margin-left: 5px;" th:each="habilidade : ${curriculo.habilidades}" th:text="${habilidade.nome}">Java</span>
-                <button class="btn btn-primary d-block btn-user w-100"
-                        style="margin-top: 2%;" id="submitBtn" type="submit">Salvar</button>
                 <hr>
                 <input type="hidden" name="idCandidato"
                        id="idCandidato" th:value="${candidato.id}">
