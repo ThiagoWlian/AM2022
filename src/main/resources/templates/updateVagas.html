@@ -84,7 +84,7 @@
 		style="position: static; left: 0; right: 0; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%); min-height: Auto; height: Auto;">
 		<div
 			class="row d-flex d-xl-flex justify-content-center justify-content-xl-center"
-			style="margin-top: 482px; height: Auto; min-height: auto;">
+			style="margin-top: 550px; height: Auto; min-height: auto;">
 			<div
 				class="col-sm-12 col-lg-10 col-xl-9 col-xxl-7 bg-white shadow-lg"
 				style="border-radius: 5px; max-height: none; height: Auto; max-width: auto; min-width: auto; width: auto; margin-bottom: -107px;">
@@ -93,27 +93,27 @@
 						<h4 class="text-dark mb-4" style="text-align: left;">Cadastro
 							de Vaga</h4>
 					</div>
-					<form action="/candidato/cadastro" method="post" class="user">
+					<form th:action="@{/vaga/atualizar/{id}(id=${vaga.id})}" method="post" class="user">
 						<div class="mb-3">
 							<input name="nome" class="form-control form-control-user"
-								type="text" placeholder="Nome da Vaga"
+								type="text" th:field="${vaga.nome}" placeholder="Nome da Vaga"
 								style="margin-top: 53px;">
 						</div>
 						<textarea name="descricao" class="form-control"
-							placeholder="Descrição" style="height: 110px;margin-bottom: 16px;"></textarea>
+							placeholder="Descrição" th:text="${vaga.descricao}" style="height: 110px;margin-bottom: 16px;"></textarea>
 
 						<textarea name="prerequisitos" class="form-control"
-							placeholder="Pré-requisitos" style="height: 110px;margin-bottom: 16px;"></textarea>
+							placeholder="Pré-requisitos" th:text="${vaga.prerequisitos}" style="height: 110px;margin-bottom: 16px;"></textarea>
 
 						<textarea name="beneficios" class="form-control"
-							placeholder="Benefícios" style="height: 110px;"></textarea>
-						<div class="row mb-3" style="margin-top: 2%">
+							placeholder="Benefícios" th:text="${vaga.beneficios}" style="height: 110px;"></textarea>
+						<div class="row mb-3" style="margin-top: 2%;">
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input name="salario" class="form-control form-control-user"
+								<input name="salario" th:field="${vaga.salario}" class="form-control form-control-user"
 									type="text" placeholder="Salário">
 							</div>
 							<div class="col-sm-6">
-								<input name="experiencia" class="form-control form-control-user"
+								<input name="experiencia" th:field="${vaga.tempo_experiencia}" class="form-control form-control-user"
 									type="text" placeholder="Tempo de Experiência">
 							</div>
 						</div>
@@ -128,10 +128,11 @@
 									th:onclick="habilidades.add(habilidade)">Add</button>
 							</div>
 						</div>
+						<span class="badge rounded-pill bg-primary mb-2" style="padding-right: 9.8px;padding-left: 9.8px;margin-left: 5px;" th:each="habilidade : ${vaga.habilidades}" th:text="${habilidade.nome}">Java</span>
 						<input type="hidden" name="listaDeHabilidades"
-							id="listaHabilidades">
+							id="listaHabilidades" th:value="${vaga.converteHabilidadesParaString()}">
 						<button class="btn btn-primary d-block btn-user w-100"
-							id="submitBtn" type="submit">Registar Vaga</button>
+							id="submitBtn" type="submit">Salvar</button>
 						<hr>
 					</form>
 				</div>

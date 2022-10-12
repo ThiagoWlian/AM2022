@@ -88,8 +88,13 @@
 	<div class="container py-4 py-xl-5">
 		<div class="container py-4 py-xl-5">
 			<h2 style="margin-bottom: 28px;">Trilhas</h2>
-			<div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3"
-				style="margin-top: 0px;">
+			<form action="/trilha/filtro/" method="get" class="col-12 col-sm-7 col-md-6 text-end" style="margin: 0px;padding: 5px 15px;width: 100%;">
+				<input type="search" name="filtro" style="width: 70%;height: 36px;">
+				<button class="btn btn-primary" type="submit" style="height: 37px;margin-left: 8px;margin-bottom: 6px;">
+					<i class="fa fa-search"></i>
+				</button>
+			</form>
+			<div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="margin-top: 0px;">
 				<div class="col" th:each="trilha : ${listarTrilhas}">
 					<div class="card">
 						<img class="card-img-top w-100 d-block fit-cover"

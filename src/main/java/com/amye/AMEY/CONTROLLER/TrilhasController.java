@@ -58,4 +58,27 @@ public class TrilhasController {
 		trilhaService.cadastrarTrilha(cadastroTrilhaDto.converterParaTrilhaModel(), cadastroTrilhaDto.converterParaListaDto(), listaHabilidades);
 		return "redirect:/prova/cadastro";
 	}
+
+	@GetMapping("/filtro/{nome}")
+	public String abrirListaTrilhasVagasFiltroNome(Model model, HttpServletRequest request, @PathVariable String nome) {
+		CandidatoModel candidato = (CandidatoModel) request.getSession().getAttribute("candidato");
+		List<TrilhaModel> listarTrilhas = trilhaService.buscarTrilhaPorNome(candidato.getId(), false, nome);
+		model.addAttribute("listarTrilhas", listarTrilhas);
+		return "trilhas";
+	}
+
+	@GetMapping("/gerencia")
+	public String abrirListaTrilhasADM(Model model, HttpServletRequest request) {
+		CandidatoModel candidato = (CandidatoModel) request.getSession().getAttribute("candidato");
+		List<TrilhaModel> listaTrilhas = trilhaService.buscarTrilhas();
+		model.addAttribute("listarTrilhas", listaTrilhas);
+		model.addAttribute("candidato", candidato);
+		return "trilhasADM";
+	}
+
+	@GetMapping("/telaAtualizar/{idTrilha}")
+	public String abrirTelaAtualizar(@PathVariable int idTrilha, Model model) {
+		model.addAttribute("trilha", trilhaService.buscarTrilhaPorId(idTrilha).get());
+		return "atualizarTrilhas";
+	}
 }

@@ -68,4 +68,12 @@ public class TrilhaService {
 	public List<Optional<TrilhaModel>> buscarTrilhasPorHabilidades(List<HabilidadeModel> listaHabilidades) {
 		return listaHabilidades.stream().map(e -> trilhaRepository.findByHabilidadesId(e.getId())).collect(Collectors.toList());
 	}
+
+	public List<TrilhaModel> buscarTrilhaPorNome(int id, boolean status, String nome) {
+		return trilhaRepository.findByTrilhasCandidatoCandidatoIdAndTrilhasCandidatoStatusAndAndNomeLikeIgnoreCase(id, status, nome);
+	}
+
+	public List<TrilhaModel> buscarTrilhas() {
+		return trilhaRepository.findAll();
+	}
 }

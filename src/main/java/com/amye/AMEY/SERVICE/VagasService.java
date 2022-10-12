@@ -1,5 +1,6 @@
 package com.amye.AMEY.SERVICE;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,8 +36,8 @@ public class VagasService {
 	@Autowired
 	HabilidadesService habilidadesService;
 	
-	public List<VagaModel> listarVagas(){
-		List<VagaModel> vagaList = vagaRepository.findAll();
+	public List<VagaModel> listarVagas(int idCandidato){
+		List<VagaModel> vagaList = candidatoVagasRepository.findVagasByCandidatoNaoPossua(idCandidato);
 		return vagaList;
 	}
 	
@@ -90,7 +91,11 @@ public class VagasService {
 	}
 
 	public List<VagasAdmDto> buscarVagasQuantidadeFiltro(String filtro) {
-		return vagaRepository.findAllQuantidadeFiltro(filtro);
+		List<VagasAdmDto> vagas = vagaRepository.findAllQuantidadeFiltro(filtro);
+		if(vagas.isEmpty()) {
+			return new ArrayList<VagasAdmDto>();
+		}
+		return vagas;
 	}
 
 

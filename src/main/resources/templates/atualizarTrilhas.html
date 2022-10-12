@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
-
+	  xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta name="viewport"
@@ -49,10 +48,10 @@
 <link rel="stylesheet" th:href="@{/assets/css/styles.css}">
 </head>
 
-<body>
+<body style="margin-top: 0px;">
 	<nav
 		class="navbar navbar-light navbar-expand-md navbar-fixed-top navigation-clean-button"
-		style="background: rgb(34, 34, 34); border-radius: 20; border-top-left-radius: 20; border-top-right-radius: 20; border-bottom-right-radius: 20; border-bottom-left-radius: 20; border-style: none; padding-top: 0; padding-bottom: 10px; margin-top: -20px;">
+		style="background: rgb(34, 34, 34); border-radius: 20; border-top-left-radius: 20; border-top-right-radius: 20; border-bottom-right-radius: 20; border-bottom-left-radius: 20; border-style: none; padding-top: 0; padding-bottom: 10px;">
 		<div class="container">
 			<button data-bs-toggle="collapse" class="navbar-toggler"
 				data-bs-target="#navcol-1">
@@ -81,59 +80,76 @@
 		</div>
 	</nav>
 	<div class="container"
-		style="position: static; left: 0; right: 0; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%); min-height: Auto; height: Auto;">
+		style="height: auto;position: static; left: 0; right: 0; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%);">
 		<div
 			class="row d-flex d-xl-flex justify-content-center justify-content-xl-center"
-			style="margin-top: 482px; height: Auto; min-height: auto;">
+			style="margin-top: 297px; margin-bottom: -363px;height: auto;">
 			<div
 				class="col-sm-12 col-lg-10 col-xl-9 col-xxl-7 bg-white shadow-lg"
-				style="border-radius: 5px; max-height: none; height: Auto; max-width: auto; min-width: auto; width: auto; margin-bottom: -107px;">
-				<div class="p-5" style="height: Auto;">
+				style="border-radius: 5px; max-height: none; height: 770.797px; margin-top: 350px;height: auto;">
+				<div class="p-5" style="height: auto;">
 					<div class="text-center">
-						<h4 class="text-dark mb-4" style="text-align: left;">Cadastro
-							de Vaga</h4>
+						<h4 class="text-dark mb-4" style="text-align: left;">Atualização
+							de Trilha</h4>
 					</div>
-					<form action="/candidato/cadastro" method="post" class="user">
+					<form class="user" action="/trilha/cadastrar" method="post">
 						<div class="mb-3">
 							<input name="nome" class="form-control form-control-user"
-								type="text" placeholder="Nome da Vaga"
+								type="text" th:field="${trilha.nome}" placeholder="Nome da Trilha"
 								style="margin-top: 53px;">
 						</div>
-						<textarea name="descricao" class="form-control"
-							placeholder="Descrição" style="height: 110px;margin-bottom: 16px;"></textarea>
-
-						<textarea name="prerequisitos" class="form-control"
-							placeholder="Pré-requisitos" style="height: 110px;margin-bottom: 16px;"></textarea>
-
-						<textarea name="beneficios" class="form-control"
-							placeholder="Benefícios" style="height: 110px;"></textarea>
-						<div class="row mb-3" style="margin-top: 2%">
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input name="salario" class="form-control form-control-user"
-									type="text" placeholder="Salário">
-							</div>
-							<div class="col-sm-6">
-								<input name="experiencia" class="form-control form-control-user"
-									type="text" placeholder="Tempo de Experiência">
-							</div>
-						</div>
+						<textarea name="descricao" th:text="${trilha.descricao}" class="form-control"
+							placeholder="Descrição" style="height: 110px;"></textarea>
+						<input name="imagem" class="form-control form-control-user"
+							type="text" placeholder="URL da Imagem" required=""
+							style="margin-top: 19px;">
 						<div id="habilidades" class="row mb-3" th:object="${habilidades}">
 							<div class="col-sm-6 col-xl-11 col-xxl-11 mb-3 mb-sm-0"
-								style="width: auto; display: flex;">
+								style="width: auto; display: flex; margin-top: 19px;">
 								<input id="habilidade" name="habilidade"
 									class="form-control form-control-user" type="text"
 									placeholder="Habilidade" style="width: 668.016px;">
-								<button class="btn btn-primary add" type="button"
-									style="margin-left: 17px; height: 35px;"
-									th:onclick="habilidades.add(habilidade)">Add</button>
+								<button class="btn btn-primary addH" type="button"
+									style="margin-left: 17px; height: 35px;">Add</button>
 							</div>
 						</div>
-						<input type="hidden" name="listaDeHabilidades"
-							id="listaHabilidades">
+						<span class="badge rounded-pill bg-primary mb-2" style="padding-right: 9.8px;padding-left: 9.8px;margin-left: 5px;" th:each="habilidade : ${trilha.habilidades}" th:text="${habilidade.nome}">Java</span>
+						<div class="row"
+							style="width: 100%; border-color: var(-bs-gray-900); margin-left: 0px; margin-top: 15px; height: 102px; min-width: 100%; max-width: 100%;">
+							<div class="col-xl-12"
+								style="height: 256px; border-radius: 5px; border: 1px solid var(-bs-gray-300);">
+								<h4 class="text-dark mb-4"
+									style="text-align: left; font-size: 19px; margin-top: 10px;">Conteúdo
+									da Trilha</h4>
+								<input class="form-control form-control-user" type="text"
+									placeholder="Nome da Conteúdo" id="conteudoTrilha"
+									style="margin-top: 19px; min-width: 90%;"><input
+									class="form-control form-control-user" type="text"
+									placeholder="URL do Vídeo" id="urlVideo"
+									style="margin-top: 19px; min-width: 90%;"><input
+									class="form-control form-control-user" type="text"
+									placeholder="URL do Documento" id="urlDocumento"
+									style="margin-top: 19px; min-width: 90%;"> <input
+									type="hidden" name="listaHabilidades" id="listaHabilidades">
+								<input type="hidden" name="listaConteudo" id="listaConteudo">
+								<button class="btn btn-primary add" type="button"
+									style="margin-left: 570px; height: 35px; margin-top: 7px; border-radius: 5px;">Add</button>
+							</div>
+						</div>
+						<div class="mb-3"></div>
+						<div class="row mb-3">
+							<p id="emailErrorMsg" class="text-danger" style="display: none;">Paragraph</p>
+							<p id="passwordErrorMsg" class="text-danger"
+								style="display: none;">Paragraph</p>
+						</div>
 						<button class="btn btn-primary d-block btn-user w-100"
-							id="submitBtn" type="submit">Registar Vaga</button>
+							id="submitBtn" type="submit"
+							style="margin-top: 151px; min-height: auto;">Registar
+							Trilha</button>
 						<hr>
 					</form>
+					<div class="text-center"></div>
+					<div class="text-center"></div>
 				</div>
 			</div>
 		</div>
@@ -180,7 +196,9 @@
 		src="assets/js/Drag-and-Drop-Multiple-File-Form-Input-upload-Advanced.js"></script>
 	<script src="https://geodata.solutions/includes/countrystate.js"></script>
 	<script src="assets/js/Model-Gallery-And-Profile.js"></script>
-	<script th:src="@{/assets/js/add.js}"></script>
+	<script th:src="@{/assets/js/addConteudoTrilha.js}"></script>
+	<script th:src="@{/assets/js/addH.js}"></script>
 	<script src="assets/js/Profile-Edit-Form.js"></script>
 </body>
+
 </html>

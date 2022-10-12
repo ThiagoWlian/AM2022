@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import com.amye.AMEY.DTO.FiltroDTO;
+import com.amye.AMEY.DTO.UpdateVagaDto;
+import com.amye.AMEY.DTO.VagasAdmDto;
 import com.amye.AMEY.MODEL.*;
 import com.amye.AMEY.SERVICE.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,10 +47,14 @@ public class VagasController {
 		return new ArrayList<HabilidadeModel>();
 	}
 	
-	@GetMapping("")
-	public String abrirListaTelaVagas(Model model) {
-		List<VagaModel> vagasLista = vagasService.listarVagas();
+	@GetMapping
+	public String abrirListaTelaVagas(Model model, HttpServletRequest request) {
+		HttpSession sessao = request.getSession();
+		int id = (int) sessao.getAttribute("idUser");
+		CandidatoModel candidato = (CandidatoModel) sessao.getAttribute("candidato");
+		List<VagaModel> vagasLista = vagasService.listarVagas(candidato.getId());
 		model.addAttribute("vagas", vagasLista);
+		model.addAttribute("candidato", candidato);
 		return "vagas";
 	}
 	
@@ -98,7 +104,10 @@ public class VagasController {
 		return "VagaDetalhes";
 	}
 	@GetMapping("/gerencia")
-	public String listarVagasAdm(Model model) {
+	public String listarVagasAdm(Model model, HttpServletRequest request) {
+		HttpSession sessao = request.getSession();
+		CandidatoModel candidato = (CandidatoModel) sessao.getAttribute("candidato");
+		model.addAttribute("candidato", candidato);
 		model.addAttribute("vagas", vagasService.buscarVagasQuantidade());
 		return "VagasAdm";
 	}
@@ -124,8 +133,32 @@ public class VagasController {
 	}
 
 	@PostMapping("/gerencia/filtro")
-	public String listarVagasAdmFiltro(Model model, FiltroDTO filtroDTO) {
-		model.addAttribute("vagas", vagasService.buscarVagasQuantidadeFiltro(filtroDTO.getFiltro()));
+	public String listarVagasAdmFiltro(Model model, FiltroDTO filtroDTO, HttpServletRequest request) {
+		HttpSession sessao = request.getSession();
+		CandidatoModel candidato = (CandidatoModel) sessao.getAttribute("candidato");
+		model.addAttribute("candidato", candidato);
+
+		List<VagasAdmDto> listaVagasConsulta = vagasService.buscarVagasQuantidadeFiltro(filtroDTO.getFiltro());
+
+		model.addAttribute("vagas", listaVagasConsulta);
 		return "VagasAdm";
 	}
+
+	@GetMapping("/telaAtualizar/{idVaga}")
+	public String telaUpdate(Model model, @PathVariable int idVaga) {
+		VagaModel vaga = vagasService.buscarVagaPorId(idVaga).get();
+		model.addAttribute("vaga", vagasService.buscarVagaPorId(idVaga).get());
+		return "updateVagas";
+	}
+
+	@PostMapping("/atualizar/{id}")
+	public String atualizarDados(UpdateVagaDto updateVagaDto, @PathVariable int id) {
+		List<HabilidadeModel> listaHabilidadesPersistidas = habilidadesService.cadastarListaDeHabilidades(updateVagaDto.listarHabilidades());
+		VagaModel vaga = vagasService.buscarVagaPorId(id).get();
+		VagaModel vagaParaPersistencia = updateVagaDto.transformaEmVagaModel(vaga);
+		vagaParaPersistencia.setHabilidades(listaHabilidadesPersistidas);
+		vagasService.cadastrarVaga(vagaParaPersistencia);
+		return "redirect:/vaga/gerencia";
+	}
+
 }

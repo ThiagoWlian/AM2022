@@ -41,6 +41,18 @@ public class VagaModel {
 		this.salario = salario;
 		this.tempo_experiencia = tempo_experiencia;
 	}
+
+	public VagaModel(int id, String nome, String descricao, String beneficios, String prerequisitos, String salario,
+					 String tempo_experiencia) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.beneficios = beneficios;
+		this.prerequisitos = prerequisitos;
+		this.salario = salario;
+		this.tempo_experiencia = tempo_experiencia;
+	}
 	
 	public VagaModel(String nome, String descricao, String beneficios, String prerequisitos, String salario,
 			String tempo_experiencia) {
@@ -123,6 +135,14 @@ public class VagaModel {
 	
 	public void addCandidato(CandidatoModel candidato) {
 		candidatos.add(candidato);
+	}
+
+	public String converteHabilidadesParaString() {
+		String habilidadesTexto = "";
+		for (HabilidadeModel habilidade : habilidades) {
+			habilidadesTexto = habilidadesTexto + habilidade.getNome() + ";";
+		}
+		return habilidadesTexto;
 	}
 }
 
