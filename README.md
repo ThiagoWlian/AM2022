@@ -10,7 +10,16 @@
 - Thiago Cordeiro Wlian RM82958 4SIS
 - José Vitor Barbosa RM83896 4SIS
 
-<p> 1) TELAS (OU LINK PARA VÍDEO NO YOUTUBE) MOSTRANDO O PROTÓTIPO TOTALMENTE FUNCIONAL. </p>
+<P>FUNCIONALIDADES</P>
+• Cadastro de usuário
+• Criação de perfil (Habilidades, Formação, Experiências)
+• Plataforma de estudo
+• Processos seletivos
+• Banco de talentos
+• Criação de vagas
+• Candidaturas de vagas
+
+<p>TELAS (OU LINK PARA VÍDEO NO YOUTUBE) MOSTRANDO O PROTÓTIPO TOTALMENTE FUNCIONAL. </p>
 
 Tela de Usuário
 https://youtu.be/vwpjACnbvUo
@@ -18,15 +27,15 @@ https://youtu.be/vwpjACnbvUo
 Tela de RH
 https://youtu.be/1jQv-S6AM7w
 
-<p>2) DIAGRAMAS DE BLOCOS DA SOLUÇÃO BACK-END E FRONT-END DESENVOLVIDAS.</p>
+<p>DIAGRAMAS DE BLOCOS DA SOLUÇÃO BACK-END E FRONT-END DESENVOLVIDAS.</p>
 
 ![image](https://user-images.githubusercontent.com/52060131/195477215-8fb822d2-4b6a-4799-abf2-83c0228d98f4.png)</p>
 
-<p>3) MODELO DE DADOS DESENVOLVIDO PARA PERSISTÊNCIA EM BANCO DE DADOS.
+<p>MODELO DE DADOS DESENVOLVIDO PARA PERSISTÊNCIA EM BANCO DE DADOS.
 
 ![image](https://user-images.githubusercontent.com/52060131/195477229-b70f2e1b-425a-4beb-940f-ade015896355.png)
 
-<p>4) DESCRIÇÃO DAS TECNOLOGIAS UTILIZADAS NO DESENVOLVIMENTO DO PROJETO: AMBIENTES, FERRAMENTAS, LINGUAGENS, IDES ETC.</p>
+<p>DESCRIÇÃO DAS TECNOLOGIAS UTILIZADAS NO DESENVOLVIMENTO DO PROJETO: AMBIENTES, FERRAMENTAS, LINGUAGENS, IDES ETC.</p>
 
 *Java*
 
@@ -52,7 +61,7 @@ O MySQL é um sistema gerenciador de banco de dados relacional de código aberto
 
 O IntelliJ IDEA é um ambiente de desenvolvimento integrado escrito em Java para desenvolver software de computador escrito em Java, Kotlin, Groovy e outras linguagens baseadas em JVM.
 
-<p>5) DESCRIÇÃO DE COMPONENTES EM NUVEM UTILIZADOS NO DESENVOLVIMENTO DO PROJETO.</p>
+<p>DESCRIÇÃO DE COMPONENTES EM NUVEM UTILIZADOS NO DESENVOLVIMENTO DO PROJETO.</p>
 
 *AWS RDS*
 
