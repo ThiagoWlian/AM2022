@@ -12,7 +12,7 @@
 
 <h2></h2>
 
-<P>FUNCIONALIDADES</P>
+<h2>FUNCIONALIDADES</h2>
 • Cadastro de usuário
 • Criação de perfil (Habilidades, Formação, Experiências)
 • Plataforma de estudo
@@ -21,7 +21,7 @@
 • Criação de vagas
 • Candidaturas de vagas
 
-<p>TELAS (OU LINK PARA VÍDEO NO YOUTUBE) MOSTRANDO O PROTÓTIPO TOTALMENTE FUNCIONAL. </p>
+<h2>TELAS (OU LINK PARA VÍDEO NO YOUTUBE) MOSTRANDO O PROTÓTIPO TOTALMENTE FUNCIONAL. </h2>
 
 Tela de Usuário
 https://youtu.be/vwpjACnbvUo
@@ -29,15 +29,15 @@ https://youtu.be/vwpjACnbvUo
 Tela de RH
 https://youtu.be/1jQv-S6AM7w
 
-<p>DIAGRAMAS DE BLOCOS DA SOLUÇÃO BACK-END E FRONT-END DESENVOLVIDAS.</p>
+<h2>DIAGRAMAS DE BLOCOS DA SOLUÇÃO BACK-END E FRONT-END DESENVOLVIDAS.</h2>
 
 ![image](https://user-images.githubusercontent.com/52060131/195477215-8fb822d2-4b6a-4799-abf2-83c0228d98f4.png)</p>
 
-<p>MODELO DE DADOS DESENVOLVIDO PARA PERSISTÊNCIA EM BANCO DE DADOS.
+<h2>MODELO DE DADOS DESENVOLVIDO PARA PERSISTÊNCIA EM BANCO DE DADOS.</h2>
 
 ![image](https://user-images.githubusercontent.com/52060131/195477229-b70f2e1b-425a-4beb-940f-ade015896355.png)
 
-<p>DESCRIÇÃO DAS TECNOLOGIAS UTILIZADAS NO DESENVOLVIMENTO DO PROJETO: AMBIENTES, FERRAMENTAS, LINGUAGENS, IDES ETC.</p>
+<h2>DESCRIÇÃO DAS TECNOLOGIAS UTILIZADAS NO DESENVOLVIMENTO DO PROJETO: AMBIENTES, FERRAMENTAS, LINGUAGENS, IDES ETC.</h2>
 
 *Java*
 
@@ -63,7 +63,7 @@ O MySQL é um sistema gerenciador de banco de dados relacional de código aberto
 
 O IntelliJ IDEA é um ambiente de desenvolvimento integrado escrito em Java para desenvolver software de computador escrito em Java, Kotlin, Groovy e outras linguagens baseadas em JVM.
 
-<p>DESCRIÇÃO DE COMPONENTES EM NUVEM UTILIZADOS NO DESENVOLVIMENTO DO PROJETO.</p>
+<h2>DESCRIÇÃO DE COMPONENTES EM NUVEM UTILIZADOS NO DESENVOLVIMENTO DO PROJETO.</h2>
 
 *AWS RDS*
 
