@@ -10,7 +10,7 @@
 - Thiago Cordeiro Wlian RM82958 4SIS
 - José Vitor Barbosa RM83896 4SIS
 
-<h2>Descrição</h2>
+<h2>DESCRIÇÃO</h2>
 Desenvolvemos uma plataforma para ajudar no recrutamento de pessoas. É um aplicativo WEB que ajuda o usuário no seu desenvolvimento para as vagas, disponibilizando conteúdos para estudo.
 
 <h2>FUNCIONALIDADES</h2>
@@ -21,6 +21,8 @@ Desenvolvemos uma plataforma para ajudar no recrutamento de pessoas. É um aplic
 • Banco de talentos
 • Criação de vagas
 • Candidaturas de vagas
+• Gerenciamento de processos seletivos
+
 
 <h2>TELAS (OU LINK PARA VÍDEO NO YOUTUBE) MOSTRANDO O PROTÓTIPO TOTALMENTE FUNCIONAL. </h2>
 
