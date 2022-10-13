@@ -14,11 +14,11 @@
 
 2) DIAGRAMAS DE BLOCOS DA SOLUÇÃO BACK-END E FRONT-END DESENVOLVIDAS.
 
-![](RackMultipart20221013-1-7jq76z_html_ce4057ecaa0f4a79.png)
+![image](https://user-images.githubusercontent.com/52060131/195477215-8fb822d2-4b6a-4799-abf2-83c0228d98f4.png)
 
 3) MODELO DE DADOS DESENVOLVIDO PARA PERSISTÊNCIA EM BANCO DE DADOS.
 
-![](RackMultipart20221013-1-7jq76z_html_bef7db0a652541a3.png)
+![image](https://user-images.githubusercontent.com/52060131/195477229-b70f2e1b-425a-4beb-940f-ade015896355.png)
 
 4) DESCRIÇÃO DAS TECNOLOGIAS UTILIZADAS NO DESENVOLVIMENTO DO PROJETO: AMBIENTES, FERRAMENTAS, LINGUAGENS, IDES ETC.
 
@@ -51,9 +51,3 @@ O IntelliJ IDEA é um ambiente de desenvolvimento integrado escrito em Java para
 *AWS RDS*
 
 O Amazon Relational Database Service (Amazon RDS) é um serviço da Web que facilita a configuração, a operação e escalabilidade de um banco de dados relacional na Nuvem AWS. Ele fornece capacidade econômica e redimensionável para um banco de dados relacional padrão do setor e gerencia tarefas comuns de administração de banco de dados.
-
-![Shape3](RackMultipart20221013-1-7jq76z_html_385ee75ec18d58f7.gif)
-
-4SIS – Maio de 2022
-
-3
