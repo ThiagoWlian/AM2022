@@ -10,6 +10,7 @@
 - Thiago Cordeiro Wlian RM82958 4SIS
 - José Vitor Barbosa RM83896 4SIS
 
+
 <P>FUNCIONALIDADES</P>
 • Cadastro de usuário
 • Criação de perfil (Habilidades, Formação, Experiências)
