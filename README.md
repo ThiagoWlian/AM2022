@@ -15,12 +15,19 @@ Desenvolvemos uma plataforma para ajudar no recrutamento de pessoas. É um aplic
 
 <h2>FUNCIONALIDADES</h2>
 • Cadastro de usuário
+
 • Criação de perfil (Habilidades, Formação, Experiências)
+
 • Plataforma de estudo
+
 • Processos seletivos
+
 • Banco de talentos
+
 • Criação de vagas
+
 • Candidaturas de vagas
+
 • Gerenciamento de processos seletivos
 
 
