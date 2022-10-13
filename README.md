@@ -12,6 +12,12 @@
 
 1) TELAS (OU LINK PARA VÍDEO NO YOUTUBE) MOSTRANDO O PROTÓTIPO TOTALMENTE FUNCIONAL.
 
+Tela de Usuário
+https://youtu.be/vwpjACnbvUo
+
+Tela de RH
+https://youtu.be/1jQv-S6AM7w
+
 2) DIAGRAMAS DE BLOCOS DA SOLUÇÃO BACK-END E FRONT-END DESENVOLVIDAS.
 
 ![image](https://user-images.githubusercontent.com/52060131/195477215-8fb822d2-4b6a-4799-abf2-83c0228d98f4.png)
