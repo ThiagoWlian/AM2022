@@ -54,6 +54,14 @@ https://youtu.be/1jQv-S6AM7w
 
 Java é uma linguagem de programação amplamente usada para codificar aplicações Web. Ela tem sido uma escolha popular entre os desenvolvedores há mais de duas décadas, com milhões de aplicações Java em uso hoje. Java é uma linguagem multiplataforma, orientada a objetos e centrada em rede que pode ser usada como uma plataforma em si. É uma linguagem de programação rápida, segura e confiável para codificar tudo, desde aplicações móveis e software empresarial até aplicações de big data e tecnologias do servidor.
 
+*HTML*
+
+O HTML é o componente básico da web, ele permite inserir o conteúdo e estabelecer a estrutura básica de um website. Portanto, ele serve para dar significado e organizar as informações de uma página na web. Sem isso, o navegador não saberia exibir textos como elementos ou carregar imagens e outros conteúdos.
+
+*CSS*
+
+O CSS ajuda a editar, alinhar, remover e trabalhar no espaço entre elementos de uma página.
+
 *Spring*
 
 O Spring é um framework Java criado com o objetivo de facilitar o desenvolvimento de aplicações, explorando, para isso, os conceitos de Inversão de Controle e Injeção de Dependências. Dessa forma, ao adotá-lo, temos à nossa disposição uma tecnologia que nos fornece não apenas recursos necessários à grande parte das aplicações, como módulos para persistência de dados, integração, segurança, testes, desenvolvimento web, como também um conceito a seguir que nos permite criar soluções menos acopladas, mais coesas e, consequentemente, mais fáceis de compreender e manter.
@@ -73,6 +81,14 @@ O MySQL é um sistema gerenciador de banco de dados relacional de código aberto
 *IntelliJ Ultimate*
 
 O IntelliJ IDEA é um ambiente de desenvolvimento integrado escrito em Java para desenvolver software de computador escrito em Java, Kotlin, Groovy e outras linguagens baseadas em JVM.
+
+*Spring Boot*
+
+O Spring Boot é um framework que torna fácil a criação de aplicações Spring autossuficientes e robustas, possibilitando a execução imediata. Contudo isso só é possível por conta da abordagem opinativa sobre a plataforma Spring e bibliotecas de terceiros, que permite ao desenvolvedor gastar o mínimo de tempo possível configurando o projeto, e sim codificando suas regras de negócio.
+
+*Bootstrap*
+
+Bootstrap é um framework web com código-fonte aberto para desenvolvimento de componentes de interface e front-end para sites e aplicações web, usando HTML, CSS e JavaScript, baseado em modelos de design para a tipografia, melhorando a experiência do usuário em um site amigável e responsivo.
 
 <h2>DESCRIÇÃO DE COMPONENTES EM NUVEM UTILIZADOS NO DESENVOLVIMENTO DO PROJETO.</h2>
 
