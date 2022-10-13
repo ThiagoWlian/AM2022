@@ -3,6 +3,7 @@ package com.amye.AMEY.REPOSITORY;
 import java.util.List;
 import java.util.Optional;
 
+import com.amye.AMEY.DTO.CandidatoModelPontosDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -13,8 +14,8 @@ import com.amye.AMEY.MODEL.CandidatoModel;
 public interface CandidatoRepository extends JpaRepository<CandidatoModel, Integer>{
 	public Optional<CandidatoModel> findByUsuarioId(int id);
 
-	@Query("SELECT c FROM CandidatoModel c JOIN CandidatoVagasModel cv ON cv.candidato.id = c.id WHERE cv.vagas.id = ?1")
-	public List<CandidatoModel> findByVagasOrderByPontosDesc(int idVaga);
+	@Query("SELECT new com.amye.AMEY.DTO.CandidatoModelPontosDto(c.id, c.nome, c.sobrenome, cv.pontos) FROM CandidatoModel c JOIN CandidatoVagasModel cv ON cv.candidato.id = c.id WHERE cv.vagas.id = ?1 ORDER BY cv.pontos DESC")
+	public List<CandidatoModelPontosDto> findByVagasOrderByPontosDesc(int idVaga);
 
 	@Query("SELECT c FROM CandidatoModel c " +
 			"JOIN CandidatoVagasModel cv ON cv.candidato.id = c.id " +

@@ -32,21 +32,20 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light navbar-expand-md navbar-fixed-top navigation-clean-button" style="background: rgb(34, 34, 34);border-radius: 20;border-top-left-radius: 20;border-top-right-radius: 20;border-bottom-right-radius: 20;border-bottom-left-radius: 20;border-style: none;padding-top: 0;padding-bottom: 10px;margin-top: -20px;">
-        <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div><a class="navbar-brand" href="#"><span style="color: rgb(255,255,255);font-size: 32px;margin-top: 0px;">EY</span> </a></div>
-            <div class="collapse navbar-collapse" id="navcol-1" style="color: rgb(255,255,255);">
-                <ul class="navbar-nav nav-right">
-                    <li class="nav-item"><a class="nav-link active" style="color: rgba(224,217,217,0.9);">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/vaga" style="color: rgba(224,217,217,0.9);">Vagas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/trilha" style="color: rgba(224,217,217,0.9);">Trilhas</a></li>
-                    <li class="nav-item"><a class="nav-link" style="color: rgba(224,217,217,0.9);">Processos Seletivos</a></li>
-                </ul>
-                <p class="ms-auto navbar-text actions"> </p>
-            </div><img class="rounded-circle" style="height: 50px;height: 40px;margin-right: 13px;margin-top: 3px;" src="assets/img/user-photo2.jpg">
-            <p class="fw-bold mb-0" style="color: rgb(254,249,249);margin-top: 4px;">Thiago Wlian</p>
-        </div>
-    </nav>
+<nav class="navbar navbar-light navbar-expand-md navbar-fixed-top navigation-clean-button" style="background: rgb(34, 34, 34);border-radius: 20;border-top-left-radius: 20;border-top-right-radius: 20;border-bottom-right-radius: 20;border-bottom-left-radius: 20;border-style: none;padding-top: 0;padding-bottom: 10px;margin-top: -20px;">
+    <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div style="width: auto;margin-top: 0.5%;margin-bottom: 0.5%;margin-left: 0%;"><img src="/assets/img/clipboard-image-1.png" style="width: 60px;margin-top: 0px;margin-bottom: 0px;"></div>
+        <div class="collapse navbar-collapse" id="navcol-1" style="color: rgb(255,255,255); margin-top: 1%">
+            <ul class="navbar-nav nav-right">
+                <li class="nav-item"><a class="nav-link" href="/vaga" style="color: rgba(224,217,217,0.9);">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/vaga/vagaCandidato" style="color: rgba(224,217,217,0.9);">Minhas vagas</a></li>
+                <li class="nav-item"><a class="nav-link" href="/trilha" style="color: rgba(224,217,217,0.9);">Trilhas</a></li>
+            </ul>
+            <p class="ms-auto navbar-text actions"> </p>
+        </div><img class="rounded-circle" style="height: 50px;height: 40px;margin-right: 13px;margin-top: 3px;" src="/assets/img/user-photo2.jpg">
+        <a class="fw-bold mb-0" th:text="${candidato.nome} + ' ' + ${candidato.sobrenome}" style="color: rgb(254,249,249);margin-top: 4px;" href="/candidato/perfil">Thiago Wlian</a>
+    </div>
+</nav>
     <div class="container py-4 py-xl-5">
         <h2 style="margin-bottom: 28px;">Minhas Vagas</h2>
         <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
@@ -74,7 +73,7 @@
                         <div style="display: flex;height: 34px;margin-top: 6px;">
                             <p class="fw-bold mb-0" style="width: 47%;height: 70px;">Status da candidatura:</p><label class="form-label" style="width: auto;max-width: 30%;min-width: 30%;" th:text="${vaga.status}">Em análise</label>
                         </div>
-                        <div><a class="btn btn-primary" type="button" style="margin-left: 276px;background: #ffffff;color: rgb(0,0,0);margin-top: 13px;">Ver Mais</a></div>
+                        <div><a class="btn btn-primary" type="button" style="margin-left: 276px;background: #ffffff;color: rgb(0,0,0);margin-top: 13px;" href="#" th:href="@{/vaga/detalhe/{link2}(link2=${vaga.vagas.id})}">Ver Mais</a></div>
                     </div>
                 </div>
             </div>

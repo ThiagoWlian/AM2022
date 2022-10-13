@@ -22,17 +22,19 @@
 
 <body>
 <nav class="navbar navbar-light navbar-expand-md navbar-fixed-top navigation-clean-button" style="background: rgb(34, 34, 34);border-radius: 20;border-top-left-radius: 20;border-top-right-radius: 20;border-bottom-right-radius: 20;border-bottom-left-radius: 20;border-style: none;padding-top: 0;padding-bottom: 10px;margin-top: -20px;">
-    <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-        <div style="width: auto;margin-top: 0.5%;margin-bottom: 0.5%;margin-left: 0%;"><img src="assets/img/clipboard-image-1.png" style="width: 60px;margin-top: 0px;margin-bottom: 0px;"></div>
-        <div class="collapse navbar-collapse" id="navcol-1" style="color: rgb(255,255,255);">
+    <div class="container" style="margin-left: 8%">
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+            <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+        </button>
+        <div style="width: auto;margin-top: 2%;margin-bottom: 0.5%;margin-left: 0%;"><img src="/assets/img/clipboard-image-1.png" style="width: 60px;margin-top: 0px;margin-bottom: 0px;"></div>
+        <div class="collapse navbar-collapse" id="navcol-1" style="color: rgb(255,255,255); margin-top: 2.5%">
             <ul class="navbar-nav nav-right">
-                <li class="nav-item"><a class="nav-link active" href="/vaga" style="color: rgba(224,217,217,0.9);">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/vaga/vagaCandidato" style="color: rgba(224,217,217,0.9);">Candidaturas</a></li>
-                <li class="nav-item"><a class="nav-link" href="/trilha" style="color: rgba(224,217,217,0.9);">Trilhas</a></li>
+                <li class="nav-item"><a class="nav-link" href="/vaga/gerencia" style="color: rgba(224,217,217,0.9);">Vagas</a></li>
+                <li class="nav-item"><a class="nav-link" href="/trilha/gerencia" style="color: rgba(224,217,217,0.9);">Trilhas</a></li>
+                <li class="nav-item"><a class="nav-link" href="/candidato/bancotalentos" style="color: rgba(224,217,217,0.9);">Banco de Talentos</a></li>
             </ul>
             <p class="ms-auto navbar-text actions"> </p>
-        </div><img class="rounded-circle" style="height: 50px;height: 40px;margin-right: 13px;margin-top: 3px;" src="assets/img/user-photo2.jpg">
-        <p class="fw-bold mb-0" th:text="${candidato.nome} + ' ' + ${candidato.sobrenome}" style="color: rgb(254,249,249);margin-top: 4px;">Thiago Wlian</p>
+        </div>
     </div>
 </nav>
     <div class="container-fluid" style="margin-top: 2%;width: 85%;">
@@ -69,7 +71,7 @@
                                     <td th:text="${vaga.nome}">Desenvolvedor Junior</td>
                                     <td><a href="#" th:href="@{/vaga/listarCandidatos/{link2}(link2=${vaga.idVaga})}" th:text="${vaga.numeroCandidaturas}">96</a></td>
                                     <td class="text-center align-middle" style="max-height: 60px;height: 60px;">
-                                        <a class="btn btnMaterial btn-flat primary semicircle" role="button" href="#" th:href="@{/vaga/detalhe/{link2}(link2=${vaga.idVaga})}"><i class="far fa-eye"></i></a>
+                                        <a class="btn btnMaterial btn-flat primary semicircle" role="button" href="#" th:href="@{/vaga/detalheadm/{link2}(link2=${vaga.idVaga})}"><i class="far fa-eye"></i></a>
                                         <a class="btn btnMaterial btn-flat success semicircle" role="button" href="#" th:href="@{/vaga/telaAtualizar/{link2}(link2=${vaga.idVaga})}"><i class="fas fa-pen"></i></a>
                                         <a class="btn btnMaterial btn-flat accent btnNoBorders checkboxHover" role="button" style="margin-left: 5px;" href="#" th:href="@{/vaga/remover/{link2}(link2=${vaga.idVaga})}"><i class="fas fa-trash btnNoBorders" style="color: #DC3545;"></i></a>
                                     </td>

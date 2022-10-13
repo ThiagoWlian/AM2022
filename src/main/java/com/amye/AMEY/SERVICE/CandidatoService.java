@@ -11,6 +11,7 @@ import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import com.amye.AMEY.DTO.CandidatoAtualizarDTO;
+import com.amye.AMEY.DTO.CandidatoModelPontosDto;
 import com.amye.AMEY.DTO.FiltroDTO;
 import com.amye.AMEY.MODEL.HabilidadeModel;
 import com.amye.AMEY.UTIL.CriteriaUtil;
@@ -42,6 +43,10 @@ public class CandidatoService {
 		candidatoModel.setProfissao(profissoesModel);
 		candidatoModel.setUsuario(usuarioModel);
 		return candidatoRepository.save(candidatoModel);
+	}
+
+	public List<CandidatoModel> buscarCandidatos() {
+		return candidatoRepository.findAll();
 	}
 
 	public CandidatoModel getCandidatoPorId(int id) {
@@ -106,7 +111,7 @@ public class CandidatoService {
 		return pontuacao;
 	}
 
-	public List<CandidatoModel> buscarCandidatosVagaOrderByPontos(int idVaga) {
+	public List<CandidatoModelPontosDto> buscarCandidatosVagaOrderByPontos(int idVaga) {
 		return candidatoRepository.findByVagasOrderByPontosDesc(idVaga);
 	}
 

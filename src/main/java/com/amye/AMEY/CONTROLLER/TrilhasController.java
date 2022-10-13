@@ -36,6 +36,7 @@ public class TrilhasController {
 		CandidatoModel candidato = (CandidatoModel) request.getSession().getAttribute("candidato");
 		List<TrilhaModel> listarTrilhas = trilhaService.listarTrilhas(candidato.getId(), false);
 		model.addAttribute("listarTrilhas", listarTrilhas);
+		model.addAttribute("candidato", candidato);
 		return "trilhas";
 	}
 	
@@ -45,10 +46,19 @@ public class TrilhasController {
 	}
 	
 	@GetMapping("/conteudo/{idConteudo}")
-	public String telaConteudoTrilha(Model model, @PathVariable int idConteudo) {
+	public String telaConteudoTrilha(Model model, @PathVariable int idConteudo, HttpServletRequest request) {
+		CandidatoModel candidato = (CandidatoModel) request.getSession().getAttribute("candidato");
 		model.addAttribute("nomeTrilha", trilhaService.buscarTrilhaPorId(idConteudo).get().getNome());
 		model.addAttribute("conteudoLista", trilhaService.listarConteudoTrilhaPorIdProva(idConteudo));
+		model.addAttribute("candidato", candidato);
 		return "trilhaConteudo";
+	}
+
+	@GetMapping("/conteudoadm/{idConteudo}")
+	public String telaConteudoTrilhaadm(Model model, @PathVariable int idConteudo) {
+		model.addAttribute("nomeTrilha", trilhaService.buscarTrilhaPorId(idConteudo).get().getNome());
+		model.addAttribute("conteudoLista", trilhaService.listarConteudoTrilhaPorIdProva(idConteudo));
+		return "trilhaConteudoadm";
 	}
 	
 	@PostMapping("/cadastrar")

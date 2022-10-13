@@ -48,10 +48,12 @@ public class ProvaController {
 	List<Integer> respostas;
 	
 	@GetMapping("/{idProva}")
-	public String getTelaProva(Model model,@PathVariable int idProva) {
+	public String getTelaProva(Model model,@PathVariable int idProva, HttpServletRequest request) {
 		respostas = new ArrayList<>();
+		CandidatoModel candidato = (CandidatoModel) request.getSession().getAttribute("candidato");
 		model.addAttribute("provas", provaService.obterProva(idProva));
 		model.addAttribute("respostas", respostas);
+		model.addAttribute("candidato", candidato);
 		return "prova";
 	}
 	
@@ -73,7 +75,8 @@ public class ProvaController {
 		boolean alternativaAprovada = false;
 
 		for(QuestaoAlternativaDto questaoDto : questoes) {
-			
+			alternativaAprovada = false;
+
 			QuestaoModel questao = questaoDto.getQuestaoModel();
 			List<AlternativaModel> alternativas = questaoDto.getListAlternativaModel();
 			questao.setProva(prova);
@@ -90,7 +93,7 @@ public class ProvaController {
 			alternativas.forEach(e -> e.setQuestao(questao));
 			alternativaService.salvarListaAlternativasModel(alternativas);
 		}
-		return "redirect:/trilha";
+		return "redirect:/trilha/gerencia";
 	}
 
 

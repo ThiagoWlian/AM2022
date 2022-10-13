@@ -16,6 +16,7 @@ public interface CandidatoVagasRepository extends JpaRepository<CandidatoVagasMo
     public List<CandidatoVagasModel> findByVagasHabilidadesIdAndCandidatoId(int HabilidadeId, int candidatoId);
 
     public List<CandidatoVagasModel> findByCandidatoId(int id);
+    public CandidatoVagasModel findByCandidatoIdAndVagasId(int candidatoId, int vagaId);
 
     @Query("SELECT v FROM VagaModel v WHERE v.id NOT IN (SELECT cvm.vagas.id FROM CandidatoVagasModel cvm WHERE cvm.candidato.id = ?1)")
     public List<VagaModel> findVagasByCandidatoNaoPossua(int idCandidato);

@@ -15,7 +15,7 @@ public interface VagaRepository extends JpaRepository<VagaModel, Integer>{
 	public List<VagaModel> findAllByCandidatosId(int id);
 	public List<VagaModel> findAllByCandidatosIdNot(int id);
 
-	@Query("SELECT new com.amye.AMEY.DTO.VagasAdmDto(v.id, v.nome, COUNT(cv.id)) FROM VagaModel v JOIN CandidatoVagasModel cv ON cv.vagas.id = v.id")
+	@Query("SELECT new com.amye.AMEY.DTO.VagasAdmDto(cv.vagas.id, cv.vagas.nome, COUNT(cv.id)) FROM CandidatoVagasModel cv group by cv.vagas.id")
 	public List<VagasAdmDto> findAllQuantidade();
 
 	@Query("SELECT new com.amye.AMEY.DTO.VagasAdmDto(v.id, v.nome, COUNT(cv.id)) FROM VagaModel v JOIN CandidatoVagasModel cv ON cv.vagas.id = v.id WHERE v.nome LIKE %?1%")

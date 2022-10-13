@@ -8,17 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
-import com.amye.AMEY.DTO.FiltroDTO;
-import com.amye.AMEY.DTO.UpdateVagaDto;
-import com.amye.AMEY.DTO.VagasAdmDto;
+import com.amye.AMEY.DTO.*;
 import com.amye.AMEY.MODEL.*;
 import com.amye.AMEY.SERVICE.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import com.amye.AMEY.DTO.CadastroVagaDto;
 
 @Controller
 @RequestMapping("/vaga")
@@ -65,6 +61,7 @@ public class VagasController {
 		CandidatoModel candidato = (CandidatoModel) sessao.getAttribute("candidato");
 		List<CandidatoVagasModel> candidatoVagaList = vagaCandidatoService.buscarCandidatoVagaModelPeloCandidato(candidato.getId());
 		model.addAttribute("candidatoVagasList", candidatoVagaList);
+		model.addAttribute("candidato", candidato);
 		return "vagasCandidato";
 	}
 	
@@ -79,7 +76,7 @@ public class VagasController {
 		VagaModel vagaParaPersistencia = cadastroVagaDto.transformaEmVagaModel();
 		vagaParaPersistencia.setHabilidades(listaHabilidadesPersistidas);
 		vagasService.cadastrarVaga(vagaParaPersistencia);
-		return "redirect:/vaga";
+		return "redirect:/vaga/gerencia";
 	}
 	
 	@GetMapping("/candidatar/{idVaga}")
@@ -99,9 +96,18 @@ public class VagasController {
 	}
 
 	@GetMapping("/detalhe/{idVaga}")
-	public String detalharVaga(@PathVariable int idVaga, Model model) {
+	public String detalharVaga(@PathVariable int idVaga, Model model, HttpServletRequest request) {
+		HttpSession sessao = request.getSession();
+		CandidatoModel candidato = (CandidatoModel) sessao.getAttribute("candidato");
 		model.addAttribute("vaga", vagasService.buscarVagaPorId(idVaga).get());
+		model.addAttribute("candidato", candidato);
 		return "VagaDetalhes";
+	}
+
+	@GetMapping("/detalheadm/{idVaga}")
+	public String detalharVagaadm(@PathVariable int idVaga, Model model, HttpServletRequest request) {
+		model.addAttribute("vaga", vagasService.buscarVagaPorId(idVaga).get());
+		return "VagaDetalhesadm";
 	}
 	@GetMapping("/gerencia")
 	public String listarVagasAdm(Model model, HttpServletRequest request) {
@@ -158,6 +164,12 @@ public class VagasController {
 		VagaModel vagaParaPersistencia = updateVagaDto.transformaEmVagaModel(vaga);
 		vagaParaPersistencia.setHabilidades(listaHabilidadesPersistidas);
 		vagasService.cadastrarVaga(vagaParaPersistencia);
+		return "redirect:/vaga/gerencia";
+	}
+
+	@PostMapping("/status")
+	public String atualizarStatus(StatusDto statusDto) {
+		vagaCandidatoService.atualizarstatus(statusDto.getStatus(), statusDto.getIdCandidato(), statusDto.getIdVaga());
 		return "redirect:/vaga/gerencia";
 	}
 

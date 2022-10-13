@@ -56,6 +56,18 @@ public class CandidatoController {
 		return "/perfilUsuario";
 	}
 
+	@GetMapping("/perfil/{id}/{idVaga}")
+	public String abrirPerfil(Model model,@PathVariable int idVaga,@PathVariable int id) {
+		CandidatoModel candidato = candidatoService.getCandidatoPorId(id);
+		CurriculoModel curriculo = curriculoService.buscarCurriculoPeloCandidato((candidato).getId());
+		model.addAttribute("curriculo", curriculo);
+		model.addAttribute("candidato", candidato);
+		model.addAttribute("formacoes", curriculo.getFormacoes());
+		model.addAttribute("experiencias", curriculo.getExperiencias());
+		model.addAttribute("vagaId", idVaga);
+		return "perfilCandidatoGerencia";
+	}
+
 	@GetMapping("/perfil/{id}")
 	public String abrirPerfil(Model model,@PathVariable int id) {
 		CandidatoModel candidato = candidatoService.getCandidatoPorId(id);
@@ -64,7 +76,7 @@ public class CandidatoController {
 		model.addAttribute("candidato", candidato);
 		model.addAttribute("formacoes", curriculo.getFormacoes());
 		model.addAttribute("experiencias", curriculo.getExperiencias());
-		return "perfilCandidatoGerencia";
+		return "perfilCandidatoGerencia2";
 	}
 	
 	@PostMapping("/cadastro")
@@ -844,7 +856,7 @@ public class CandidatoController {
 		curriculoModel.setCandidato(candidatoCadastrado);
 		curriculoService.criarNovoCurriculo(curriculoModel);
 
-		return "cadastroInicial";
+		return "redirect:/usuario/login";
 	}
 
 	@PutMapping("/status")
@@ -856,5 +868,11 @@ public class CandidatoController {
 	public String atualizarCandidato(CandidatoAtualizarDTO candidatoAtualizarDTO) {
 		candidatoService.atualizarCandidato(candidatoAtualizarDTO);
 		return "redirect:/vaga/vagaCandidato";
+	}
+
+	@GetMapping("/bancotalentos")
+	public String abrirBancoTalentos(Model model) {
+		model.addAttribute("candidatos", candidatoService.buscarCandidatos());
+		return "BancoTalentos";
 	}
 }

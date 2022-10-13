@@ -48,4 +48,10 @@ public class VagaCandidatoService {
         return candidatoVagasRepository.findByCandidatoId(idCandidato);
     }
 
+    public void atualizarstatus(String status, int idCandidato, int idVaga) {
+        CandidatoVagasModel model = candidatoVagasRepository.findByCandidatoIdAndVagasId(idCandidato, idVaga);
+        model.setStatus(status);
+        candidatoVagasRepository.save(model);
+    }
+
 }

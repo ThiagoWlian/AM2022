@@ -32,20 +32,17 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light navbar-expand-md navbar-fixed-top navigation-clean-button" style="background: rgb(34, 34, 34);border-radius: 20;border-top-left-radius: 20;border-top-right-radius: 20;border-bottom-right-radius: 20;border-bottom-left-radius: 20;border-style: none;padding-top: 0;padding-bottom: 10px;margin-top: -20px;">
-        <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div><a class="navbar-brand" href="#"><span style="color: rgb(255,255,255);font-size: 32px;margin-top: 0px;">EY</span> </a></div>
-            <div class="collapse navbar-collapse" id="navcol-1" style="color: rgb(255,255,255);">
-                <ul class="navbar-nav nav-right">
-                    <li class="nav-item"><a class="nav-link active" href="login.html" style="color: rgba(224,217,217,0.9);">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html" style="color: rgba(224,217,217,0.9);">Vagas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="faq.html" style="color: rgba(224,217,217,0.9);">Trilhas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html" style="color: rgba(224,217,217,0.9);">Processos Seletivos</a></li>
-                </ul>
-                <p class="ms-auto navbar-text actions"> </p>
-            </div>
+<nav class="navbar navbar-light navbar-expand-md navbar-fixed-top navigation-clean-button" style="background: rgb(34, 34, 34);border-radius: 20;border-top-left-radius: 20;border-top-right-radius: 20;border-bottom-right-radius: 20;border-bottom-left-radius: 20;border-style: none;padding-top: 0;padding-bottom: 10px;margin-top: -20px;">
+    <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div style="width: auto;margin-top: 0.5%;margin-bottom: 0.5%;margin-left: 0%;"><img src="/assets/img/clipboard-image-1.png" style="width: 60px;margin-top: 0px;margin-bottom: 0px;"></div>
+        <div class="collapse navbar-collapse" id="navcol-1" style="color: rgb(255,255,255); margin-top: 1%">
+            <ul class="navbar-nav nav-right">
+                <li class="nav-item"><a class="nav-link" href="/usuario/login" style="color: rgba(224,217,217,0.9);">Login</a></li>
+            </ul>
+            <p class="ms-auto navbar-text actions"> </p>
         </div>
-    </nav>
+    </div>
+</nav>
     <div class="container" style="position: static;left: 0;right: 0;top: 50%;transform: translateY(-50%);-ms-transform: translateY(-50%);-moz-transform: translateY(-50%);-webkit-transform: translateY(-50%);-o-transform: translateY(-50%);">
         <div class="row d-flex d-xl-flex justify-content-center justify-content-xl-center" style="margin-top: 348px;margin-bottom: -143px;">
             <div class="col-sm-12 col-lg-10 col-xl-9 col-xxl-7 bg-white shadow-lg" style="border-radius: 5px;max-height: none;height: 515.797px;">
@@ -63,18 +60,12 @@
                         <div class="row mb-3">
                             <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" name="nome" type="text" placeholder="First Name" required=""></div>
                             <div class="col-sm-6"><input class="form-control form-control-user" name="sobrenome" type="text" placeholder="Last Name" required=""></div>
-                        </div><select name="profissao" class="form-select">
-                            <optgroup label="Profissão de Interesse">
-                                <option value="1" selected="">This is item 1</option>
-                                <option value="2">This is item 2</option>
-                                <option value="3">This is item 3</option>
-                            </optgroup>
-                        </select>
+                        </div>
                         <div class="row mb-3">
                             <p id="emailErrorMsg" class="text-danger" style="display:none;">Paragraph</p>
                             <p id="passwordErrorMsg" class="text-danger" style="display:none;">Paragraph</p>
                         </div>
-                        <p><label class="form-label" for="form-files"><a class="btn btn-secondary btn-sm" role="button">Choose Files</a></label>&nbsp;<span style="color: rgb(32, 33, 36);">Curriculum</span><br></p>
+                        <p><label class="form-label" for="form-files"><input class="btn btn-secondary btn-sm" type="file" role="button"></label>
                         <button class="btn btn-primary d-block btn-user w-100" id="submitBtn" type="submit">Registar Conta</button>
                         <hr>
                     </form>
