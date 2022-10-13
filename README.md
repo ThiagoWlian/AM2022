@@ -14,6 +14,7 @@
 Desenvolvemos uma plataforma para ajudar no recrutamento de pessoas. É um aplicativo WEB que ajuda o usuário no seu desenvolvimento para as vagas, disponibilizando conteúdos para estudo.
 
 <h2>FUNCIONALIDADES</h2>
+
 • Cadastro de usuário
 
 • Criação de perfil (Habilidades, Formação, Experiências)
