@@ -1,13 +1,3 @@
-![](RackMultipart20221013-1-7jq76z_html_5d6f623e4b6ba3c4.png) ![](RackMultipart20221013-1-7jq76z_html_c0044bad214cde83.png) ![Shape1](RackMultipart20221013-1-7jq76z_html_e4609fbcd981ce6c.gif) ![Shape2](RackMultipart20221013-1-7jq76z_html_be551b4df74c28d5.gif)
-
-AM EY
-
-![](RackMultipart20221013-1-7jq76z_html_efc8f2a0872e4f86.png)
-
-"Centro Universitário FIAP"
-
-![](RackMultipart20221013-1-7jq76z_html_c0c02d6f1ce6fb05.png)
-
 *AM - 2022*
 
 *Grupo:* Skopos
