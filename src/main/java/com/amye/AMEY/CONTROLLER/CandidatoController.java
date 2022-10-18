@@ -1,6 +1,7 @@
 package com.amye.AMEY.CONTROLLER;
 
 import com.amye.AMEY.DTO.CandidatoAtualizarDTO;
+import com.amye.AMEY.DTO.FiltroDTO;
 import com.amye.AMEY.DTO.JSONCONVERT.Data;
 import com.amye.AMEY.DTO.StatusCandidatoDto;
 import com.amye.AMEY.MODEL.CurriculoModel;
@@ -857,6 +858,12 @@ public class CandidatoController {
 		curriculoService.criarNovoCurriculo(curriculoModel);
 
 		return "redirect:/usuario/login";
+	}
+
+	@PostMapping("/listarCandidatos/filtro")
+	public String listarCandidatosVagaFiltro(Model model, FiltroDTO filtroDTO) {
+		model.addAttribute("candidatos", candidatoService.buscarCandidatosPorFiltroOrderByPontos(filtroDTO));
+		return "BancoTalentos";
 	}
 
 	@PutMapping("/status")

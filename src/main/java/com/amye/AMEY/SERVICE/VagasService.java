@@ -51,6 +51,11 @@ public class VagasService {
 		return vagaList;
 	}
 
+	public List<VagaModel> listarVagasPorNome(String filtro) {
+		return vagaRepository.findByVagaNome(filtro);
+	}
+
+
 	public List<VagaModel> listarVagasPorCandidatoDisponiveis(int id){
 		CandidatoModel candidato = candidatoService.getCandidatoPorIdUsuario(id);
 		List<VagaModel> vagaList = vagaRepository.findAllByCandidatosIdNot(candidato.getId());

@@ -110,6 +110,6 @@ public class ProvaController {
 			List<CandidatoVagasModel> candidatoVagasModelList = vagaCandidatoService.buscarCandidatosVagas(trilha.getHabilidades() ,candidatoModel);
 			vagaCandidatoService.aumentarPontos(candidatoVagasModelList,porcentagemAcertos);
 		}
-		return "redirect:/trilha";
+		return "redirect:/vaga/vagaCandidato";
 	}
 }

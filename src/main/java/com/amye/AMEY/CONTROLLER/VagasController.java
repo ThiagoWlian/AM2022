@@ -92,7 +92,7 @@ public class VagasController {
 			trilhasCandidatoSerivce.salvarTrilhasCandidatoPorListHabilidades(vaga.get().getHabilidades(), candidatoModel);
 			vagaCandidatoService.aumentarPontos(candidatoVagasModel,candidatoService.calculaPontuacaoCandidato(curriculoModel.getHabilidades() ,vaga.get().getHabilidades()));
 		}
-		return "redirect:/vaga/vagaCandidato";
+		return "redirect:/vaga";
 	}
 
 	@GetMapping("/detalhe/{idVaga}")
@@ -136,6 +136,16 @@ public class VagasController {
 		model.addAttribute("candidatos", candidatoService.buscarCandidatosVagaPorFiltroOrderByPontos(idVaga, filtroDTO));
 		model.addAttribute("idVaga", idVaga);
 		return "CandidatosVaga";
+	}
+
+	@PostMapping("/listarVagas/filtro")
+	public String listarVagaFiltro(Model model, FiltroDTO filtroDTO, HttpServletRequest request) {
+		HttpSession sessao = request.getSession();
+		int id = (int) sessao.getAttribute("idUser");
+		CandidatoModel candidato = (CandidatoModel) sessao.getAttribute("candidato");
+		model.addAttribute("candidato", candidato);
+		model.addAttribute("vagas", vagasService.listarVagasPorNome(filtroDTO.getFiltro()));
+		return "vagas";
 	}
 
 	@PostMapping("/gerencia/filtro")

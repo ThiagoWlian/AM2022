@@ -31,6 +31,12 @@ public class FiltroDTO {
     public boolean isSobrenome() {
         return categoria.equalsIgnoreCase("sobrenome");
     }
+    public boolean isExperiencia() {
+        return categoria.equalsIgnoreCase("experiencia");
+    }
+    public boolean isFormacao() {
+        return categoria.equalsIgnoreCase("formacao");
+    }
 
     public boolean isPontos() {
         return categoria.equalsIgnoreCase("pontos");

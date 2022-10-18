@@ -14,6 +14,8 @@ import com.amye.AMEY.DTO.CandidatoAtualizarDTO;
 import com.amye.AMEY.DTO.CandidatoModelPontosDto;
 import com.amye.AMEY.DTO.FiltroDTO;
 import com.amye.AMEY.MODEL.HabilidadeModel;
+import com.amye.AMEY.REPOSITORY.ExperienciaRepository;
+import com.amye.AMEY.REPOSITORY.FormacoesRepository;
 import com.amye.AMEY.UTIL.CriteriaUtil;
 import org.hibernate.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,12 @@ public class CandidatoService {
 	
 	@Autowired
 	CandidatoRepository candidatoRepository;
+
+	@Autowired
+	FormacoesRepository formacoesRepository;
+
+	@Autowired
+	ExperienciaRepository experienciaRepository;
 
 	@Autowired
 	ProfissoesService profissoesService;
@@ -127,6 +135,28 @@ public class CandidatoService {
 		}
 		if(filtroDTO.isPontos()) {
 			return candidatoRepository.findByVagasCandidatoPontosOrderByPontosDesc(idVaga, filtroDTO.getFiltro());
+		}
+		if(filtroDTO.isExperiencia()) {
+			return experienciaRepository.findByExperienciaNome(idVaga, filtroDTO.getFiltro());
+		}
+		if(filtroDTO.isFormacao()) {
+			return formacoesRepository.findCandidatoByNomeExperiencia(idVaga, filtroDTO.getFiltro());
+		}
+		return new ArrayList<CandidatoModel>();
+	}
+
+	public List<CandidatoModel> buscarCandidatosPorFiltroOrderByPontos(FiltroDTO filtroDTO) {
+		if(filtroDTO.isHabilidade()) {
+			return candidatoRepository.findByVagasHabilidadeOrderByPontosDesc(filtroDTO.getFiltro());
+		}
+		if(filtroDTO.isNome()) {
+			return candidatoRepository.findByVagasCandidatoNomeOrderByPontosDesc(filtroDTO.getFiltro());
+		}
+		if(filtroDTO.isExperiencia()) {
+			return experienciaRepository.findByExperienciaNome(filtroDTO.getFiltro());
+		}
+		if(filtroDTO.isFormacao()) {
+			return formacoesRepository.findCandidatoByNomeExperiencia(filtroDTO.getFiltro());
 		}
 		return new ArrayList<CandidatoModel>();
 	}
